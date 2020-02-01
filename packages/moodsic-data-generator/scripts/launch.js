@@ -15,13 +15,10 @@ require('@babel/register')({
   extensions: ['.js', '.jsx', '.ts', '.tsx'],
 });
 
-const server = require('../src/server/index.local').default;
-
 function launch() {
   log('launcher(): argv: %j', argv);
   console.log(44);
   app();
-  server();
 }
 
 if (require.main === module) {

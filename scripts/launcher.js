@@ -20,6 +20,19 @@ const processDefinitions = {
       stdio: 'inherit',
     },
   ),
+  moodsicDataGenerator: proc(
+    'node',
+    [
+      './scripts/launch.js',
+    ],
+    {
+      cwd: './packages/moodsic-data-generator',
+      env: {
+        FORM_WEB_PORT: launcherConfig.FORM_WEB_PORT,
+      },
+      stdio: 'inherit',
+    },
+  ),
 };
 
 const processGroupDefinitions = {

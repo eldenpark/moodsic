@@ -25,6 +25,7 @@
   "scripts": {
     "build": "node ./scripts/builder.js",
     "dev": "node ./scripts/launcher.js",
+    "generator": "node ./scripts/launcher --process=moodsicDataGenerator",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",
     "setup": "yarn install && yarn run lerna exec yarn install",
