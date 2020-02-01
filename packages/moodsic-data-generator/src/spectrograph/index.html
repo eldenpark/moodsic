@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spectrograph</title>
+  <link href=style.css rel=stylesheet>
+</head>
+<body style=background:#fcfcfc>
+  <img id=uploadSelection src=img/upload.svg>
+  <img id=micSelection src=img/mic.svg>
+  <input id=up type=file>
+  <canvas height=512 hidden id=c width=800>
+    <p class=nocanvas>
+      You must use a browser that supports <i>HTML5 canvas</i>. <b>Your browser does not</b>.<br> <i>I highly recommend the current version of <a href=https://www.google.com/chrome/browser/ >Google Chrome</a></i>.
+    </p>
+  </canvas>
+  <h2 id=err-upload>
+    Are you sure the file you selected was an audio or video file? It may be in an incompatible format. Please try again, or maybe use a different file.<br><br>
+    <span id=err-ok>Okay</span>
+  </h2>
+  <p style="font-family: 'Helvetica'; text-align: center; position: absolute; bottom: 0px; left: 0px; right: 0px; margin-bottom: 10px; font-weight: bold;">
+    Created by Will Brickner
+  </p>
+  <script src=js/js.js></script>
+</body>
+</html>
