@@ -1,0 +1,37 @@
+{
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.4.4",
+    "@types/node": "^12.0.8",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-styled-components": "^1.10.6",
+    "chalk": "^2.4.2",
+    "del": "^4.1.1",
+    "gulp": "^4.0.2",
+    "jege": "^0.4.0",
+    "lerna": "^3.15.0",
+    "process-launch": "^0.6.1",
+    "typescript": "^3.5.2",
+    "yargs": "^13.2.4"
+  },
+  "private": true,
+  "scripts": {
+    "build": "node ./scripts/builder.js",
+    "dev": "node ./scripts/launcher.js",
+    "launch": "node ./scripts/launcher.js",
+    "lerna": "node ./node_modules/.bin/lerna",
+    "setup": "yarn install && yarn run lerna exec yarn install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {}
+}

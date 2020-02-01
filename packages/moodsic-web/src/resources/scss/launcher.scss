@@ -1,0 +1,34 @@
+.launcher {
+  > div {
+    width: 600px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+
+    .title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .desc {
+    }
+  }
+
+  .configuration {
+    label {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    > div {
+      margin-bottom: 18px;
+    }
+
+    .options {
+      textarea {
+        height: 140px;
+        width: 370px;
+      }
+    }
+  }
+}
