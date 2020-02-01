@@ -61,7 +61,7 @@
   },
   "license": "ISC",
   "main": "index.js",
-  "name": "moodsic-web",
+  "name": "moodsic-data-generator",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
