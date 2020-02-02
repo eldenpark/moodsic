@@ -250,7 +250,6 @@ const Sad = styled.div({
   marginTop: '-650px',
   marginLeft: '1100px',
   backgroundColor: 'white',
-  
 });
 
 const Calm = styled.div({
@@ -266,27 +265,33 @@ const Calm = styled.div({
 
 const Universal: React.FC<any> = () => {
   const handleClickSubmit = React.useCallback(() => {
-    const file1 = document.getElementById('file1');
-
-    // console.log(55, file1.files);
-    
     const formData = new FormData();
-    // formData.append('image', file1.files[0]);
-    // axios.post('http://localhost:4001', formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   },
-    // });
+    const files: any = document.getElementsByClassName('files');
+    for (let i = 0; i < files.length; i += 1) {
+      const file = files[i].files[0];
+      if (file !== undefined) {
+        formData.append('files', file);
+      }
+    }
+
+    axios.post('http://localhost:4001/uploads', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then(({ data }) => {
+        console.log('fetch success: %o', data);
+      });
   }, []);
 
   return (
     <StyledUniversal>
         <Hyunjae id="myForm" method="post" encType="multipart/form-data">
-          <Inp type="file" id="file1"/><br />
-          <Inp type="file" id="file2" name="files" /><br />
-          <Inp type="file" id="file3" name="files" /><br />
-          <Inp type="file" id="file4" name="files" /><br />
-          <Inp type="file" id="file5" name="files" /><br />
+          <Inp type="file" className="files"/><br />
+          <Inp type="file" className="files" name="files" /><br />
+          <Inp type="file" className="files" name="files" /><br />
+          <Inp type="file" className="files" name="files" /><br />
+          <Inp type="file" className="files" name="files" /><br />
           <div id="selectedFiles" />
           <Inpsubmit
             onClick={handleClickSubmit}

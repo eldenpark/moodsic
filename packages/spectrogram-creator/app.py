@@ -86,4 +86,7 @@ def create(audioPath = "audio", outputPath = "output"):
 
 if __name__ == '__main__':
   print("launch app.py, sys.argv: %s" % sys.argv)
-  create(audioPath = sys.argv[1] if len(sys.argv) > 1 else "audio")
+  create(
+    audioPath = sys.argv[1] if len(sys.argv) > 1 else "audio",
+    outputPath  = sys.argv[2] if (len(sys.argv) > 2 else "output")
+  )
