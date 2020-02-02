@@ -1,3 +1,4 @@
+const axios = require('axios');
 const bodyParser = require('body-parser');
 const childProcess = require('child_process');
 const cors = require('cors');
@@ -42,21 +43,72 @@ module.exports = function server() {
   app.use(bodyParser.json());
 
   app.post('/uploads', uploads.array('files'), (req, res) => {
-    log('/uploads: files: %o', req.files);
+    log('/uploads: files: %j', req.files);
 
-    const filenames = req.files.map((file) => ({
-      originalname: file.originalname,
-    }));
-
-    childProcess.spawn(`python3 ${paths.creatorPath} ${paths.audioPath} ${paths.imagesPath}`, {
+    childProcess.execSync(`python3 ${paths.creatorPath} ${paths.audioPath} ${paths.imagesPath}`, {
       cwd: paths.spectrogramPath,
       shell: process.env.SHELL,
       stdio: 'inherit',
     });
 
-    res.send({
-      filenames,
+    const files = req.files.map((file) => {
+      const imgPath = path.resolve(paths.imagesPath, `${file.originalname}.png`);
+      log('/uploads: processing imgFile: %s', imgPath);
+
+      if (!fs.existsSync(imgPath)) {
+        log('/uploads: image is not found, imgPath: %s', imgPath);
+        res.send({
+          error: true,
+          payload: {
+            msg: "spectrogram creation might have failed",
+            filename: file.originalname,
+          },
+        });
+        throw new Error('image is not found');
+      }
+
+      const imageBytes = fs.readFileSync(imgPath).toString('base64');
+
+      return axios.request({
+        data: {
+          "payload": {
+            "image": {
+              imageBytes,
+            },
+          },
+        },
+        headers: {
+          Authorization: 'Bearer ya29.c.Ko8BvAdZDcGvjOb4gjMIPRwneVw6T6udIRAwFrpmC3gob9JJOAPSnc2c8wHm9hj-Xcmm7YU7MdEhKMGYU4blbkFpDUutqMI1nik05x3wlZim8l1TRQcMBBT-abLMbwMIueEI5YTeY5txfZc-WfK8QrUavmMSmMZ5NXeEhgGHJbilMeE-PWO1OQsKD7Xvuz2-bog',
+          'Content-Type': 'application/json',
+        },
+        method: 'post',
+        url: 'https://automl.googleapis.com/v1beta1/projects/670091185417/locations/us-central1/models/ICN3559756855855022080:predict',
+      })
+        .then(({ data }) => {
+          log('/uploads: gcloud prediction, filename: %s, gcloud response: %j', file.originalname, data);
+
+          return {
+            filename: file.originalname,
+            result: data.payload,
+          };
+        })
+        .catch((err) => {
+          log(
+            '/uploads: request failed, filename: %s, err.message: %s, err.response',
+            file.originalname,
+            err.message,
+            err.response,
+          );
+        });
     });
+
+    Promise.all(files)
+      .then((result) => {
+        res.send({
+          error: false,
+          payload: result,
+        });
+      });
   });
 
   app.use('*', (req, res) => {
@@ -96,7 +148,7 @@ function bootstrap() {
           }
         })
       }
-    })
+    });
   }
 
   if (fs.existsSync(creatorPath)) {
