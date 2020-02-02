@@ -33,7 +33,7 @@ try {
 
 if (ApiSupport) {
   // setup the analyser and dataArray early
-  analyser.fftSize = 1024;
+  analyser.fftSize = 512;
   bufferLength = analyser.frequencyBinCount;
   eightBufferLength = 8 * bufferLength + 1;
   dataArray = new Uint8Array(bufferLength);
@@ -142,16 +142,12 @@ function handleSelection() {
     uploader.click();
     //         uploader.style.display = 'block';
 
-    console.log(4);
-
     uploader.addEventListener('change', function () {
       // this way if the user cancels the file upload the buttons will still be there
       uploadSelect.style.display = 'none';
       micSelect.style.display = 'none';
 
       var reader = new FileReader();
-
-      console.log(1, dataArray);
 
       reader.onload = function (ev) {
         audioContext.decodeAudioData(ev.target.result, function (_buffer) {
@@ -192,11 +188,9 @@ function draw() {
   //     for(var index = bufferLength, _o = 0; index > 0; --index, _o += 8)
   for (var index = 0, _o = eightBufferLength; index < bufferLength; ++index, _o -= 8) {
     imageDataFrame.data[_o] =
-      imageDataFrame.data[_o + 1] = dataArray[index];
+      imageDataFrame.data[_o + 1] = dataArray[index] * 2;
     // increment by 8, as to not interfere with the playhead (second coloumn of pixels at x=1)
   }
-
-  console.log(11, imageDataFrame.data[0], x);
 
   canvasContext.putImageData(imageDataFrame, x, 0);
 
