@@ -25,7 +25,7 @@
   "scripts": {
     "build": "node ./scripts/builder.js",
     "dev": "node ./scripts/launcher.js",
-    "generator": "node ./scripts/launcher --process=moodsicDataGenerator",
+    "generator": "GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/key-1.json node ./scripts/launcher --process=moodsicDataGenerator",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",
     "spectrogram": "node ./scripts/launcher.js --process=spectrogramCreator",

@@ -28,7 +28,7 @@ const processDefinitions = {
     {
       cwd: './packages/moodsic-data-generator',
       env: {
-        FORM_WEB_PORT: launcherConfig.FORM_WEB_PORT,
+        GOOGLE_APPLICATION_CREDENTIALS: '~/.gcloud/key-1.json',
       },
       stdio: 'inherit',
     },
