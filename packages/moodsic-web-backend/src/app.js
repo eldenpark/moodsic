@@ -45,6 +45,17 @@ module.exports = function server() {
   app.post('/uploads', uploads.array('files'), (req, res) => {
     log('/uploads: files: %j', req.files);
 
+    const accessToken = childProcess.execSync(
+      `GOOGLE_APPLICATION_CREDENTIALS="/Users/elden/.gcloud/key-1.json" gcloud auth application-default print-access-token`,
+      {
+        cwd: paths.spectrogramPath,
+        shell: process.env.SHELL,
+        stdio: 'inherit',
+      },
+    )
+
+    console.log('/uploads, accessToken acquired: %s', accessToken);
+
     childProcess.execSync(`python3 ${paths.creatorPath} ${paths.audioPath} ${paths.imagesPath}`, {
       cwd: paths.spectrogramPath,
       shell: process.env.SHELL,
@@ -78,7 +89,7 @@ module.exports = function server() {
           },
         },
         headers: {
-          Authorization: 'Bearer ya29.c.Ko8BvAdZDcGvjOb4gjMIPRwneVw6T6udIRAwFrpmC3gob9JJOAPSnc2c8wHm9hj-Xcmm7YU7MdEhKMGYU4blbkFpDUutqMI1nik05x3wlZim8l1TRQcMBBT-abLMbwMIueEI5YTeY5txfZc-WfK8QrUavmMSmMZ5NXeEhgGHJbilMeE-PWO1OQsKD7Xvuz2-bog',
+          Authorization: 'Bearer ya29.c.Ko8BvAfEUqz5Zl8l9E1zRte-k7-cuUCOeYcp-XhB6UiEJOBOMPS44HxCK3w9DDASfhzj8IWBvTcMm74XdPVjqjRdSYPEeMGSMpEaZAofJ_neUtR_WnKqedRzpXgnnFNrNBvIWVWZcKYvliPhdTTuRbi8FjyRCvJDVzRsgMbA1R9bAodF39yk1-u59wxfYm2lt3o',
           'Content-Type': 'application/json',
         },
         method: 'post',

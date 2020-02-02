@@ -75,10 +75,14 @@ const Main = () => {
   const handleClickSubmit = React.useCallback(() => {
     const formData = new FormData();
     const files: any = document.getElementsByClassName('files');
+    const fileMap = {};
     for (let i = 0; i < files.length; i += 1) {
       const file = files[i].files[0];
       if (file !== undefined) {
+        console.log('Main(): including file: %o', file);
+
         formData.append('files', file);
+        fileMap[file.name] = i;
         const canvas: any = document.getElementById(`canvas-${i}`);
         drawSpectrogram(file, canvas, i);
       }
@@ -90,7 +94,24 @@ const Main = () => {
       },
     })
       .then(({ data }) => {
-        console.log('fetch success: %o', data);
+        console.log('Main(): classification API success, response: %o', data);
+
+        if (data.payload && data.payload.length > 0) {
+          data.payload.forEach((file) => {
+            console.log('Main(): processing file: %s', file);
+            if (fileMap[file.filename] !== undefined) {
+              const label: any = document.getElementById(`label-${fileMap[file.filename]}`);
+              if (label !== null) {
+                const { score } = file.result[0].classification;
+                const newLabel = `${file.result[0].displayName}-(${+score * 100}%)`;
+                label.innerText = newLabel;
+              }
+            }
+          });
+        }
+      })
+      .catch((err) => {
+        console.warn('Main(): classification API fails, error: %o', err);
       });
   }, []);
 
