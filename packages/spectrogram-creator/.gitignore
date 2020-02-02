@@ -1,0 +1,5 @@
+env/
+audio/*
+!audio/.gitkeep
+output/*
+!output/.gitkeep

@@ -33,6 +33,16 @@ const processDefinitions = {
       stdio: 'inherit',
     },
   ),
+  spectrogramCreator: proc(
+    'python3',
+    [
+      './app.py',
+    ],
+    {
+      cwd: './packages/spectrogram-creator',
+      stdio: 'inherit',
+    },
+  ),
 };
 
 const processGroupDefinitions = {

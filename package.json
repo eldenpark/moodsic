@@ -28,6 +28,7 @@
     "generator": "node ./scripts/launcher --process=moodsicDataGenerator",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",
+    "spectrogram": "node ./scripts/launcher.js --process=spectrogramCreator",
     "setup": "yarn install && yarn run lerna exec yarn install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
