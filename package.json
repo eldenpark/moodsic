@@ -35,5 +35,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "filepond": "^4.9.5",
+    "react-filepond": "^7.0.1"
+  }
 }

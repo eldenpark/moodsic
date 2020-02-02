@@ -4742,6 +4742,11 @@ file-uri-to-path@1.0.0:
   resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
   integrity sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==
 
+filepond@^4.9.5:
+  version "4.9.5"
+  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.9.5.tgz#8f49c1ae0434d50595b33e9cb95e7ff55d51461c"
+  integrity sha512-ufTYgY1i1nzNriaacMNPwv8qc55xhCY6LzuKhybB53LHL8vn0P+T3ADOyrSHxDhfBp7abO6AO0vB9wohpiDD3A==
+
 fill-range@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-4.0.0.tgz#d544811d428f98eb06a63dc402d2403c328c38f7"
@@ -8244,6 +8249,11 @@ rc@^1.0.1, rc@^1.1.6:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.17.0"
+
+react-filepond@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-filepond/-/react-filepond-7.0.1.tgz#caf96526287140884a31a1476b8328d9d6ecdee2"
+  integrity sha512-PitNM44JP0K5hXnkSYV3HRlkObsWbhqaJRWizMrdHpS3pPz9/iyiOGmRpc+4T4ST3vblmiUTLRYq/+1bDcSqQw==
 
 react-hot-loader@^4.11.1:
   version "4.12.19"
