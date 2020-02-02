@@ -19,6 +19,12 @@ import librosa
 import numpy
 import skimage
 
+excludeFileExtension = [
+  ".png",
+  ".gitkeep",
+  ".DS_Store",
+]
+
 def scale_minmax(X, min = 0.0, max = 1.0):
   X_std = (X - X.min()) / (X.max() - X.min())
   X_scaled = X_std * (max - min) + min
@@ -47,7 +53,7 @@ def create(audioPath = "audio", outputPath = "output"):
   print("create(): audioPath: %s, audioRealPath: %s" % (audioPath, audioRealPath))
 
   for fname in os.listdir(audioRealPath):
-    if not fname.endswith(".gitkeep") and not fname.endswith(".png"):
+    if fname not in excludeFileExtension:
       audioFilename = os.path.join(audioRealPath, fname)
       print("create(): audioFilename: %s" % audioFilename)
 
