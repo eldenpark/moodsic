@@ -9,11 +9,9 @@ import {
   XongkoroProvider,
 } from 'xongkoro';
 
-import { ReduxState } from '@@src/universal/state';
 import Universal from '@@src/universal/components/Universal';
 
 const ServerApp: React.FC<ServerAppProps> = ({
-  reduxStore,
   requestUrl,
   routerContext,
   xongkoro,
@@ -23,11 +21,7 @@ const ServerApp: React.FC<ServerAppProps> = ({
       context={routerContext}
       location={requestUrl}
     >
-      <ReduxProvider store={reduxStore}>
-        <XongkoroProvider xongkoro={xongkoro}>
-          <Universal />
-        </XongkoroProvider>
-      </ReduxProvider>
+        <Universal />
     </StaticRouter>
   );
 };
@@ -35,7 +29,6 @@ const ServerApp: React.FC<ServerAppProps> = ({
 export default ServerApp;
 
 interface ServerAppProps {
-  reduxStore: Store<ReduxState>;
   requestUrl: string;
   routerContext: object;
   xongkoro: Xongkoro<any>;

@@ -5,7 +5,6 @@ import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import styled from '@emotion/styled';
 
-import ErrorBoundary from '@@src/universal/components/app/Error/ErrorBoundary';
 import normalize from '@@src/universal/styles/normalize';
 
 const normalizeStyle = css`
@@ -269,23 +268,19 @@ const Universal: React.FC<any> = () => {
   const handleClickSubmit = React.useCallback(() => {
     const file1 = document.getElementById('file1');
 
-    console.log(55, file1.files);
+    // console.log(55, file1.files);
     
     const formData = new FormData();
-    formData.append('image', file1.files[0]);
-    axios.post('http://localhost:4001', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-    });
-    
-    
+    // formData.append('image', file1.files[0]);
+    // axios.post('http://localhost:4001', formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   },
+    // });
   }, []);
-  
 
   return (
     <StyledUniversal>
-      <ErrorBoundary>
         <Hyunjae id="myForm" method="post" encType="multipart/form-data">
           <Inp type="file" id="file1"/><br />
           <Inp type="file" id="file2" name="files" /><br />
@@ -295,21 +290,17 @@ const Universal: React.FC<any> = () => {
           <div id="selectedFiles" />
           <Inpsubmit
             onClick={handleClickSubmit}
-            type="button" 
+            type="button"
             value="Run"
           />
         </Hyunjae>
         <div>
           <SigBox1>
-  
           </SigBox1>
-          
-          
         </div>
         <HorLine1></HorLine1>
         <div>
           <Label1>
-        
           </Label1>
         </div>
         <div>
@@ -319,40 +310,33 @@ const Universal: React.FC<any> = () => {
         <HorLine2></HorLine2>
         <div>
           <Label2>
-        
           </Label2>
         </div>
         <div>
           <SigBox3>
-          
           </SigBox3>
         </div>
         <HorLine3></HorLine3>
         <div>
           <Label3>
-        
           </Label3>
         </div>
         <div>
           <SigBox4>
-        
           </SigBox4>
         </div>
         <HorLine4></HorLine4>
         <div>
           <Label4>
-        
           </Label4>
         </div>
         <div>
           <SigBox5>
-        
           </SigBox5>
         </div>
         <HorLine5></HorLine5>
         <div>
           <Label5>
-        
           </Label5>
         </div>
         <Vertline></Vertline>
@@ -363,12 +347,10 @@ const Universal: React.FC<any> = () => {
         </div>
         <div>
           <Sad>
-
           </Sad>
         </div>
         <div>
           <Calm>
-
           </Calm>
         </div>
         <Global
@@ -377,7 +359,6 @@ const Universal: React.FC<any> = () => {
         <Global
           styles={customStyle}
         />
-      </ErrorBoundary>
     </StyledUniversal>
   );
 };

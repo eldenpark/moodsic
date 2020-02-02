@@ -11,7 +11,6 @@ import { renderToStringProxy } from 'xongkoro/server';
 import { logger } from 'jege/server';
 import { MakeHtml } from 'express-isomorphic';
 
-import { initializeStore } from '@@src/universal/state';
 import IsomorphicState from './IsomorphicState';
 import ServerApp from '@@src/server/ServerApp';
 
@@ -29,7 +28,6 @@ const makeHtml: MakeHtml<IsomorphicState> = async ({
     publicPath,
   } = state;
 
-  const reduxStore = initializeStore();
   const xongkoro = createXongkoro({
     preloadedState: {},
     ssr: true,
@@ -39,7 +37,6 @@ const makeHtml: MakeHtml<IsomorphicState> = async ({
 
   const element = (
     <ServerApp
-      reduxStore={reduxStore}
       requestUrl={requestUrl}
       routerContext={{}}
       xongkoro={xongkoro}
