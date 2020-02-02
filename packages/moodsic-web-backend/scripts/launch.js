@@ -6,18 +6,18 @@ const { logger } = require('jege/server');
 const babelRc = require('./.babelrc');
 const { gulp } = require('./build');
 
-const log = logger('[moodsic-web]');
+const log = logger('[moodsic-web-backend]');
+
+const app = require('../src/app');
 
 require('@babel/register')({
   ...babelRc,
   extensions: ['.js', '.jsx', '.ts', '.tsx'],
 });
 
-const server = require('../src/server/index.local').default;
-
 function launch() {
   log('launcher(): argv: %j', argv);
-  server();
+  app();
 }
 
 if (require.main === module) {

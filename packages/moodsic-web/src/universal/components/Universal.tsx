@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { compose } from 'redux';
 import { css, Global } from '@emotion/core';
 import { hot } from 'react-hot-loader/root';
@@ -37,9 +38,7 @@ const StyledUniversal = styled.div({
 const Hyunjae = styled.form({
   marginTop: '30px',
   width: '800px'
-  
 });
-
 
 const Inpsubmit = styled.input({
   color: 'white',
@@ -52,7 +51,6 @@ const Inpsubmit = styled.input({
   borderRadius: "20px",
   marginTop: '80px',
   marginLeft: '80px'
-
 });
 
 const Inp = styled.input({
@@ -66,7 +64,6 @@ const Inp = styled.input({
   backgroundColor: '#F5F5F5',
   paddingLeft: '15px',
   paddingTop: '13px'
-
 });
 
 const SigBox1 = styled.div({
@@ -78,8 +75,8 @@ const SigBox1 = styled.div({
   marginTop: '-735px',
   marginLeft: '500px',
   backgroundColor: 'white',
-  
 });
+
 const SigBox2 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -89,7 +86,6 @@ const SigBox2 = styled.div({
   marginTop: '-600px',
   marginLeft: '500px',
   backgroundColor: 'white',
-  
 });
 
 const SigBox3 = styled.div({
@@ -101,8 +97,8 @@ const SigBox3 = styled.div({
   marginTop: '-470px',
   marginLeft: '500px',
   backgroundColor: 'white',
-  
 });
+
 const SigBox4 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -112,8 +108,8 @@ const SigBox4 = styled.div({
   marginTop: '-340px',
   marginLeft: '500px',
   backgroundColor: 'white',
-  
 });
+
 const SigBox5 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -123,8 +119,8 @@ const SigBox5 = styled.div({
   marginTop: '-210px',
   marginLeft: '500px',
   backgroundColor: 'white',
-  
 });
+
 const Label1 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -134,8 +130,8 @@ const Label1 = styled.div({
   marginTop: '-735px',
   marginLeft: '850px',
   backgroundColor: 'white',
-  
 });
+
 const Label2 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -145,8 +141,8 @@ const Label2 = styled.div({
   marginTop: '-600px',
   marginLeft: '850px',
   backgroundColor: 'white',
-  
 });
+
 const Label3 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -156,8 +152,8 @@ const Label3 = styled.div({
   marginTop: '-470px',
   marginLeft: '850px',
   backgroundColor: 'white',
-  
 });
+
 const Label4 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -167,8 +163,8 @@ const Label4 = styled.div({
   marginTop: '-340px',
   marginLeft: '850px',
   backgroundColor: 'white',
-  
 });
+
 const Label5 = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -178,7 +174,6 @@ const Label5 = styled.div({
   marginTop: '-210px',
   marginLeft: '850px',
   backgroundColor: 'white',
-  
 });
 
 const Vertline = styled.div({
@@ -189,6 +184,7 @@ const Vertline = styled.div({
   marginLeft: '1020px',
   top: '50px'
 });
+
 const HorLine1 = styled.div({
   position: 'absolute',
   borderTop: "1px dotted #D3D3D3",
@@ -198,6 +194,7 @@ const HorLine1 = styled.div({
   marginLeft: '405px',
   top: '55px',
 });
+
 const HorLine2 = styled.div({
   borderTop: "1px dotted #D3D3D3",
   borderWidth: 'thick',
@@ -206,6 +203,7 @@ const HorLine2 = styled.div({
   marginLeft: '405px',
   top: '265px'
 });
+
 const HorLine3 = styled.div({
   borderTop: "1px dotted #D3D3D3",
   borderWidth: 'thick',
@@ -214,6 +212,7 @@ const HorLine3 = styled.div({
   marginLeft: '405px',
   top: '395px'
 });
+
 const HorLine4 = styled.div({
   borderTop: "1px dotted #D3D3D3",
   borderWidth: 'thick',
@@ -222,6 +221,7 @@ const HorLine4 = styled.div({
   marginLeft: '405px',
   top: '525px'
 });
+
 const HorLine5 = styled.div({
   borderTop: "1px dotted #D3D3D3",
   borderWidth: 'thick',
@@ -230,6 +230,7 @@ const HorLine5 = styled.div({
   marginLeft: '405px',
   top: '655px'
 });
+
 const Happy = styled.div({
   display: 'inline-block',
   boxShadow: "1px 3px 4px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
@@ -239,7 +240,6 @@ const Happy = styled.div({
   marginTop: '-735px',
   marginLeft: '1100px',
   backgroundColor: 'white',
-  
 });
 
 const Sad = styled.div({
@@ -263,24 +263,41 @@ const Calm = styled.div({
   marginTop: '-565px',
   marginLeft: '1100px',
   backgroundColor: 'white',
-  
 });
 
-
-
 const Universal: React.FC<any> = () => {
- 
+  const handleClickSubmit = React.useCallback(() => {
+    const file1 = document.getElementById('file1');
+
+    console.log(55, file1.files);
+    
+    const formData = new FormData();
+    formData.append('image', file1.files[0]);
+    axios.post('http://localhost:4001', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+    });
+    
+    
+  }, []);
+  
+
   return (
     <StyledUniversal>
       <ErrorBoundary>
         <Hyunjae id="myForm" method="post" encType="multipart/form-data">
-          <Inp type="file" id="files"/><br />
-          <Inp type="file" id="files" name="files" /><br />
-          <Inp type="file" id="files" name="files" /><br />
-          <Inp type="file" id="files" name="files" /><br />
-          <Inp type="file" id="files" name="files" /><br />
+          <Inp type="file" id="file1"/><br />
+          <Inp type="file" id="file2" name="files" /><br />
+          <Inp type="file" id="file3" name="files" /><br />
+          <Inp type="file" id="file4" name="files" /><br />
+          <Inp type="file" id="file5" name="files" /><br />
           <div id="selectedFiles" />
-          <Inpsubmit type="submit" value="Run"/>
+          <Inpsubmit
+            onClick={handleClickSubmit}
+            type="button" 
+            value="Run"
+          />
         </Hyunjae>
         <div>
           <SigBox1>
@@ -354,15 +371,12 @@ const Universal: React.FC<any> = () => {
 
           </Calm>
         </div>
-
-        <script></script>
         <Global
           styles={normalizeStyle}
         />
         <Global
           styles={customStyle}
         />
-
       </ErrorBoundary>
     </StyledUniversal>
   );

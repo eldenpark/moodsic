@@ -23,20 +23,23 @@
   },
   "private": true,
   "scripts": {
+    "backend": "node ./scripts/launcher.js --process=moodsicWebBackend",
     "build": "node ./scripts/builder.js",
-    "dev": "node ./scripts/launcher.js",
+    "dev": "npm-run-all -p web backend",
     "generator": "GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/key-1.json node ./scripts/launcher --process=moodsicDataGenerator",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",
     "spectrogram": "node ./scripts/launcher.js --process=spectrogramCreator",
     "setup": "yarn install && yarn run lerna exec yarn install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "node ./scripts/launcher.js --process=moodsicWeb"
   },
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
     "filepond": "^4.9.5",
+    "npm-run-all": "^4.1.5",
     "react-filepond": "^7.0.1"
   }
 }

@@ -7,6 +7,19 @@ const launcherConfig = require('./launcherConfig');
 const log = logger('[monorepo-moodsic-web]');
 
 const processDefinitions = {
+  moodsicDataGenerator: proc(
+    'node',
+    [
+      './scripts/launch.js',
+    ],
+    {
+      cwd: './packages/moodsic-data-generator',
+      env: {
+        GOOGLE_APPLICATION_CREDENTIALS: '~/.gcloud/key-1.json',
+      },
+      stdio: 'inherit',
+    },
+  ),
   moodsicWeb: proc(
     'node',
     [
@@ -20,15 +33,14 @@ const processDefinitions = {
       stdio: 'inherit',
     },
   ),
-  moodsicDataGenerator: proc(
+  moodsicWebBackend: proc(
     'node',
     [
       './scripts/launch.js',
     ],
     {
-      cwd: './packages/moodsic-data-generator',
+      cwd: './packages/moodsic-web-backend',
       env: {
-        GOOGLE_APPLICATION_CREDENTIALS: '~/.gcloud/key-1.json',
       },
       stdio: 'inherit',
     },
