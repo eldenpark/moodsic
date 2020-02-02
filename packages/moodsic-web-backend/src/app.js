@@ -8,20 +8,23 @@ const { logger } = require('jege/server');
 const multer = require('multer');
 const path = require('path');
 
-const audioPath = path.resolve(__dirname, '../audio');
 const port = 4001;
-const state = {
-  creatorPath: undefined,
+
+const paths = {
+  audioPath: path.resolve(__dirname, '../audio'),
+  creatorPath: path.resolve(__dirname, '../../spectrogram-creator/app.py'),
+  imagesPath: path.resolve(__dirname, '../images'),
+  spectrogramPath: path.resolve(__dirname, '../../spectrogram-creator'),
 };
 
 const log = logger('[moodsic-web-backend]');
 const app = express();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, audioPath);
+    cb(null, paths.audioPath);
   },
   filename: (req, file, cb) => {
-    log('diskStorage(): file will be stored at: %s/%s', audioPath, file.originalname);
+    log('diskStorage(): file will be stored at: %s/%s', paths.audioPath, file.originalname);
     cb(null, file.originalname);
   },
 });
@@ -45,6 +48,12 @@ module.exports = function server() {
       originalname: file.originalname,
     }));
 
+    childProcess.spawn(`python3 ${paths.creatorPath} ${paths.audioPath} ${paths.imagesPath}`, {
+      cwd: paths.spectrogramPath,
+      shell: process.env.SHELL,
+      stdio: 'inherit',
+    });
+
     res.send({
       filenames,
     });
@@ -62,8 +71,13 @@ module.exports = function server() {
 };
 
 function bootstrap() {
-  const creatorPath = path.resolve(__dirname, '../../spectrogram-creator/app.py');
-  log('bootstrap(): audioPath: %s, creatorPath: %s', audioPath, creatorPath);
+  const { audioPath, creatorPath, imagesPath } = paths;
+  log(
+    'bootstrap(): $SHELL: %s, audioPath: %s, creatorPath: %s',
+    process.env.SHELL,
+    audioPath,
+    creatorPath,
+  );
 
   if (!fs.existsSync(audioPath)) {
     log('bootstrap(): audioPath does not exists at: %s', audioPath);
@@ -86,10 +100,16 @@ function bootstrap() {
   }
 
   if (fs.existsSync(creatorPath)) {
-    state.creatorPath = creatorPath;
     log('bootstrap(): found creatorPath at: %s', creatorPath);
   } else {
     log('bootstrap(): creator does not exist at: %s', creatorPath);
     throw new Error('creator does not exist');
+  }
+
+  if (fs.existsSync(imagesPath)) {
+    log('bootstrap(): found imagesPath at: %s', imagesPath);
+  } else {
+    log('bootstrap(): imagesPath does not exist at: %s', imagesPath);
+    throw new Error('imagesPath does not exist');
   }
 }

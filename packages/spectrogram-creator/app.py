@@ -3,6 +3,7 @@ import os
 
 def addLibLookupPath():
   lookupPath = os.path.join(os.getcwd(), "env/lib/python3.7/site-packages")
+  print('addLibLookupPath(): lookupPath: %s' % lookupPath)
 
   if os.path.exists(lookupPath) is False:
     print("addLibLookupPath(): WARN! lookupPath does not exist at: %s" % lookupPath)
@@ -88,5 +89,5 @@ if __name__ == '__main__':
   print("launch app.py, sys.argv: %s" % sys.argv)
   create(
     audioPath = sys.argv[1] if len(sys.argv) > 1 else "audio",
-    outputPath  = sys.argv[2] if (len(sys.argv) > 2 else "output")
+    outputPath  = sys.argv[2] if  len(sys.argv) > 2 else "output"
   )
