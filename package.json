@@ -26,7 +26,6 @@
     "backend": "node ./scripts/launcher.js --process=moodsicWebBackend",
     "build": "node ./scripts/builder.js",
     "dev": "npm-run-all -p web backend",
-    "generator": "GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/key-1.json node ./scripts/launcher --process=moodsicDataGenerator",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",
     "spectrogram": "node ./scripts/launcher.js --process=spectrogramCreator",

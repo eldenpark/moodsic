@@ -58,13 +58,21 @@ const StyledLabel = styled.div({
   '& p:first-child': {
     fontWeight: 600,
   },
+  '& .focus': {
+    color: 'white',
+    fontWeight: 600,
+    backgroundColor: '#0a0c0c',
+  },
+  '& > p:last-child': {
+    padding: 10,
+  },
 });
 
 const Label = ({
   id,
 }) => {
   return (
-    <StyledLabel>
+    <StyledLabel className="label">
       <p>Classification</p>
       <p id={id}>n/a</p>
     </StyledLabel>
@@ -72,10 +80,19 @@ const Label = ({
 };
 
 const Main = () => {
+  React.useEffect(() => {
+    console.log('Main(): useEffect(): main is rendered');
+    const form: any = document.getElementById('form');
+    form.sources = [];
+    form.labels = [];
+  }, []);
+
   const handleClickSubmit = React.useCallback(() => {
     const formData = new FormData();
     const files: any = document.getElementsByClassName('files');
     const fileMap = {};
+    const form: any = document.getElementById('form');
+
     for (let i = 0; i < files.length; i += 1) {
       const file = files[i].files[0];
       if (file !== undefined) {
@@ -98,12 +115,15 @@ const Main = () => {
 
         if (data.payload && data.payload.length > 0) {
           data.payload.forEach((file) => {
-            console.log('Main(): processing file: %s', file);
+            console.log('Main(): processing file: %o', file);
+
             if (fileMap[file.filename] !== undefined) {
               const label: any = document.getElementById(`label-${fileMap[file.filename]}`);
               if (label !== null) {
-                const { score } = file.result[0].classification;
-                const newLabel = `${file.result[0].displayName}-(${+score * 100}%)`;
+                const { classification, displayName } = file.result[0];
+                const normalizedScore = (+classification.score * 100) / 100;
+                form.labels.push(displayName);
+                const newLabel = `${displayName}-(${normalizedScore.toFixed(5)}%)`;
                 label.innerText = newLabel;
               }
             }
@@ -117,7 +137,7 @@ const Main = () => {
 
   return (
     <div>
-      <Form id="myForm">
+      <Form id="form">
         <Row>
           <Input type="file" className="files"/><br />
           <Spectrogram>
@@ -171,6 +191,7 @@ function drawSpectrogram(file, canvasElement, idx) {
   const WIDTH = canvasElement.width;
   const audioContext = new (window.AudioContext || window['webkitAudioContext'])();
   const canvasContext = canvasElement.getContext('2d');
+  const form: any = document.getElementById('form');
 
   let source;
   let eightBufferLength;
@@ -202,6 +223,7 @@ function drawSpectrogram(file, canvasElement, idx) {
   }
 
   source = audioContext.createBufferSource();
+  form.sources.push(source);
 
   const reader = new FileReader();
   reader.onload = function (ev: any) {

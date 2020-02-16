@@ -7,3 +7,6 @@ output/*
 
 images/*
 !images/.gitkeep
+
+model/*
+!model/.gitkeep
