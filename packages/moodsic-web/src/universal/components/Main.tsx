@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import styled from '@emotion/styled';
 
+import Control from '@@src/universal/components/Control';
+
 const Form = styled.form({
 });
 
@@ -13,28 +15,44 @@ const Row = styled.div({
 const Submit = styled.input({
   alignItems: 'center',
   backgroundColor: '#FFA07A',
-  borderRadius: "20px",
-  boxShadow: "2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
+  borderRadius: 8,
   color: 'white',
   cursor: 'pointer',
   display: 'flex',
   fontSize: 20,
   justifyContent: 'center',
-  marginTop: 20,
   height: 40,
-  width: 250,
+  width: 210,
+  '&:hover': {
+    fontWeight: 600,
+    transform: 'translate(2px,2px)',
+  },
 });
 
-const Input = styled.input({
+const FileInput = styled.input({
   backgroundColor: '#F5F5F5',
   cursor: 'pointer',
   display: 'inline-block',
-  boxShadow: "2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3)",
   borderRadius: "8px",
   height: 45,
   padding: 10,
   width: 250,
+  '&:hover': {
+    fontWeight: 600,
+    transform: 'translate(2px,2px)',
+  },
 });
+
+const Input = () => {
+  return (
+    <div>
+      <FileInput
+        className="files"
+        type="file"
+      />
+    </div>
+  );
+};
 
 const Spectrogram = styled.div({
   backgroundColor: '#f7fafb',
@@ -74,7 +92,7 @@ const Label = ({
   return (
     <StyledLabel className="label">
       <p>Classification</p>
-      <p id={id}>n/a</p>
+      <p id={id}>-  </p>
     </StyledLabel>
   );
 };
@@ -139,38 +157,40 @@ const Main = () => {
     <div>
       <Form id="form">
         <Row>
-          <Input type="file" className="files"/><br />
+          <Input />
           <Spectrogram>
             <canvas id="canvas-0"/>
           </Spectrogram>
           <Label id={`label-${0}`} />
         </Row>
         <Row>
-          <Input type="file" className="files"/><br />
+          <Input />
           <Spectrogram>
             <canvas id="canvas-1"/>
           </Spectrogram>
           <Label id={`label-${1}`} />
         </Row>
         <Row>
-          <Input type="file" className="files"/><br />
+          <Input />
           <Spectrogram>
             <canvas id="canvas-2"/>
           </Spectrogram>
           <Label id={`label-${2}`} />
         </Row>
         <Row>
-          <Input type="file" className="files"/><br />
+          <Input />
           <Spectrogram>
             <canvas id="canvas-3"/>
           </Spectrogram>
           <Label id={`label-${3}`} />
         </Row>
-        <Submit
-          onClick={handleClickSubmit}
-          type="button"
-          value="Run"
-        />
+        <Control>
+          <Submit
+            onClick={handleClickSubmit}
+            type="button"
+            value="Run"
+          />
+        </Control>
       </Form>
     </div>
   );

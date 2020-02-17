@@ -96,6 +96,13 @@ module.exports = function server() {
 
     Promise.all(files)
       .then((result) => {
+        del.sync([
+          `${paths.audioPath}/*`,
+          `!${paths.audioPath}/.gitkeep`,
+          `${paths.imagesPath}/*`,
+          `!${paths.imagesPath}/.gitkeep`,
+        ]);
+
         res.send({
           error: false,
           payload: result,

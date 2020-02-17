@@ -42,7 +42,7 @@ const Universal: React.FC<any> = () => {
   return (
     <StyledUniversal>
       <Main />
-      <Control />
+      {/* <Control /> */}
       <Global
         styles={normalizeStyle}
       />
