@@ -39,7 +39,7 @@ const uploads = multer({
 });
 
 module.exports = function server() {
-  log('server(): launching...');
+  log('server(): launching, GOOGLE_APPLICATION_CRENDEITALS=%s', process.env.GOOGLE_APPLICATION_CREDENTIALS);
   bootstrap();
   const model = require(paths.modelPath);
   log('server(): found model: %j', model);
@@ -88,6 +88,8 @@ module.exports = function server() {
         },
       };
       const [response] = await predictionClient.predict(request);
+      log('/uploads: succees getting prediction: %s', response);
+
       return {
         filename: file.originalname,
         result: response.payload,

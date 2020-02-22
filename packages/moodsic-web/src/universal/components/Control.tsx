@@ -18,7 +18,7 @@ const Button = styled.div({
   justifyContent: 'center',
   marginBottom: 30,
   width: 150,
-'&  :hover': {
+'&:hover': {
     fontWeight: 600,
     transform: 'translate(2px,2px)',
   },

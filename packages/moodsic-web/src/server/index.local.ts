@@ -9,7 +9,6 @@ import expressIsomorphic, {
 import http from 'http';
 import { logger } from 'jege/server';
 import path from 'path';
-import { requireNonEmpty } from 'objekt';
 import {
   watch,
   withWebpackDev,
@@ -54,11 +53,11 @@ const extend: Extend<IsomorphicState> = async (app, serverState) => {
 };
 
 export default async function server() {
-  const formWebPort = requireNonEmpty(process.env.FORM_WEB_PORT);
+  const port = 3001;
 
   log(
-    'server(): starting server, formWebPort: %s',
-    formWebPort,
+    'server(): starting server, port: %s',
+    port,
   );
 
   const { app } = await expressIsomorphic.createDev<IsomorphicState>({
@@ -71,8 +70,8 @@ export default async function server() {
 
   const httpServer = http.createServer(app);
 
-  httpServer.listen(formWebPort, () => {
-    log(`listening on port: ${chalk.yellow('%s')}`, formWebPort);
+  httpServer.listen(port, () => {
+    log(`listening on port: ${chalk.yellow('%s')}`, port);
   });
 }
 

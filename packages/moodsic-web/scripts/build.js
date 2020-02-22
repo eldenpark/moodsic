@@ -1,15 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { buildLogger } = require('jege/server');
 const del = require('del');
-const fs = require('fs');
+// const fs = require('fs');
 const gulp = require('gulp');
 const path = require('path');
-const sass = require('node-sass');
 
-const log = buildLogger('[sandbox-web]');
+const log = buildLogger('[moodsic-web]');
 
 const paths = {
-  assets: path.resolve(__dirname, '../dist/assets'),
   build: path.resolve(__dirname, '../build'),
   dist: path.resolve(__dirname, '../dist'),
   src: path.resolve(__dirname, '../src'),
@@ -32,35 +30,10 @@ gulp.task('copy-public', () => {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('compile-scss', () => {
-  try {
-    fs.mkdirSync(paths.assets, { recursive: true });
-
-    const indexScssPath = path.resolve(paths.src, 'resources/scss/index.scss');
-    const cssFileName = 'index.css';
-    const indexCssPath = path.resolve(paths.assets, cssFileName);
-
-    log('compile-scss', 'indexScssPath: %s, indexCssPath: %s', indexScssPath, indexCssPath);
-
-    return new Promise((resolve) => {
-      sass.render({
-        file: indexScssPath,
-        outputStyle: 'compressed',
-      }, (err, { css }) => {
-        fs.writeFileSync(indexCssPath, css.toString('utf-8'));
-        resolve(cssFileName);
-      });
-    });
-  } catch (err) {
-    log('compile-scss', 'error occurred: %o', err);
-    throw err;
-  }
-});
-
-gulp.task('build-dev', gulp.series('clean', 'copy-public', 'compile-scss'));
+gulp.task('build', gulp.series('clean', 'copy-public'));
 
 function build(callback) {
-  const buildTask = gulp.task('build-dev');
+  const buildTask = gulp.task('build');
   buildTask(callback);
 }
 

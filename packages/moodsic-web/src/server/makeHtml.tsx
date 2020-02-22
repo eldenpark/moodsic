@@ -79,7 +79,6 @@ function template({
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    <script>window['__XONGKORO_STATE__']=${JSON.stringify(xongkoroState).replace(/</g, '\\u003c')}</script>
     ${processEnvElement}
   </head>
   <div id="react-root">${reactAppInString}</div>

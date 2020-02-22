@@ -1,14 +1,11 @@
-/* eslint-disable */
 /* eslint-disable import/no-extraneous-dependencies */
 const { argv } = require('yargs');
 const { logger } = require('jege/server');
 
+const app = require('../src/app');
 const babelRc = require('./.babelrc');
-const { gulp } = require('./build');
 
 const log = logger('[moodsic-web-backend]');
-
-const app = require('../src/app');
 
 require('@babel/register')({
   ...babelRc,

@@ -1,10 +1,13 @@
 const { argv } = require('yargs');
 const { createLauncher, proc } = require('process-launch');
+const os = require('os');
+const path = require('path');
+
 const { logger } = require('jege/server');
 
-const launcherConfig = require('./launcherConfig');
-
 const log = logger('[monorepo-moodsic-web]');
+
+const keyPath = path.resolve(os.homedir(), '.gcloud/key-1.json');
 
 const processDefinitions = {
   moodsicWeb: proc(
@@ -15,7 +18,6 @@ const processDefinitions = {
     {
       cwd: './packages/moodsic-web',
       env: {
-        FORM_WEB_PORT: launcherConfig.FORM_WEB_PORT,
       },
       stdio: 'inherit',
     },
@@ -28,6 +30,7 @@ const processDefinitions = {
     {
       cwd: './packages/moodsic-web-backend',
       env: {
+        GOOGLE_APPLICATION_CREDENTIALS: keyPath,
       },
       stdio: 'inherit',
     },

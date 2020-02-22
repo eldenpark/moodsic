@@ -4665,6 +4665,18 @@ express-isomorphic-extension@^0.32.0:
     webpack-dev-middleware "^3.7.0"
     webpack-hot-middleware "^2.25.0"
 
+express-isomorphic-extension@^0.34.0:
+  version "0.34.0"
+  resolved "https://registry.yarnpkg.com/express-isomorphic-extension/-/express-isomorphic-extension-0.34.0.tgz#c3a9fba0d44e92ced6c4fd1ebd7ab24d41f5e1ff"
+  integrity sha512-5XLZyChT35gE3uFNbqciCHMpU5dbkbvbQry5voUb27KZBYPpZPX/4/xrsG0nalfliftMBDnJ9iRTmsKCAo/wCw==
+  dependencies:
+    chalk "^2.4.2"
+    express-isomorphic "^0.34.0"
+    jege "^0.4.0"
+    webpack "^4.33.0"
+    webpack-dev-middleware "^3.7.0"
+    webpack-hot-middleware "^2.25.0"
+
 express-isomorphic@^0.32.0:
   version "0.32.0"
   resolved "https://registry.yarnpkg.com/express-isomorphic/-/express-isomorphic-0.32.0.tgz#58dd2e3940d90fb7153076040c373d11b454c5b2"
@@ -4677,6 +4689,23 @@ express-isomorphic@^0.32.0:
     jege "^0.4.0"
     mkdirp "^0.5.1"
     nodemon "^1.19.1"
+    socket.io "^2.2.0"
+    url-loader "^1.1.2"
+    yargs "^13.2.4"
+
+express-isomorphic@^0.34.0:
+  version "0.34.0"
+  resolved "https://registry.yarnpkg.com/express-isomorphic/-/express-isomorphic-0.34.0.tgz#0152c251c6da5aae3556e75c64fa396a829d9ec8"
+  integrity sha512-fH8EhtiNRvm/Q6oYNYdrAGZ2RfkRwihvqA38STxuac9CG/8JyjOt5DZDgbBYnfd0zdfOnkgKCcyWc+dwzLMCFQ==
+  dependencies:
+    axios "^0.19.0"
+    body-parser "^1.19.0"
+    del "^3.0.0"
+    express "^4.16.4"
+    jege "^0.4.0"
+    mkdirp "^0.5.1"
+    nodemon "^1.19.1"
+    objekt "^0.1.0"
     socket.io "^2.2.0"
     url-loader "^1.1.2"
     yargs "^13.2.4"
@@ -6352,6 +6381,13 @@ jege@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/jege/-/jege-0.4.0.tgz#44f66dd37f26b546b29335bed57fca782297842e"
   integrity sha512-6qERF6fz8fcaI/hW2Mlxohjur3e+TZZOTRafKQ2rQTg+WurjpFrwoU7yuL1wO2dhIGxkiVbR6ecfEg0ILPRuzg==
+  dependencies:
+    chalk "^2.4.2"
+
+jege@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/jege/-/jege-0.5.1.tgz#4e8aecfadb50a2d7f464bc5641a3a5c7e215b691"
+  integrity sha512-KtEIyPwz1a1gP1GLulwfRIn915TMYMN61MvWjvhwXOLhPcd3DZOaca6/jgMVQ0Hxbb+mX/7BZ07iKgsnYabL0A==
   dependencies:
     chalk "^2.4.2"
 
