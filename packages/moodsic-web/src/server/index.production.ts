@@ -18,6 +18,7 @@ const webpackBuild = require('../../dist/build.json');
 const log = logger('[moodsic-web]');
 
 const paths = {
+  build:path.resolve(__dirname, '../../build'),
   dist: path.resolve(__dirname, '../../dist'),
 };
 
@@ -48,11 +49,11 @@ const extend: Extend<IsomorphicState> = async (app, serverState) => {
     });
 };
 
-(async () => {
+export default async function main() {
   const { app, eject } = await ExpressIsomorphic.create({
     ejectPath: paths.dist,
     extend,
-    makeHtmlPath: path.resolve(__dirname, '../makeHtml.bundle.js'),
+    makeHtmlPath: path.resolve(paths.build, 'makeHtml.bundle.js'),
   });
 
   const port = 6001;
@@ -67,4 +68,4 @@ const extend: Extend<IsomorphicState> = async (app, serverState) => {
     fileName: 'index.html',
     requestUrl: `http://localhost:${port}/`,
   });
-})();
+};

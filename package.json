@@ -24,7 +24,7 @@
   "private": true,
   "scripts": {
     "backend": "node ./scripts/launcher.js --process=moodsicWebBackend",
-    "build": "node ./scripts/builder.js",
+    "build": "NODE_ENV=production yarn run web",
     "dev": "npm-run-all -p web backend",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",

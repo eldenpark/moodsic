@@ -24,7 +24,6 @@ const paths = {
   assets: path.resolve(__dirname, '../../dist/assets'),
   build: path.resolve(__dirname, '../../build'),
   dist: path.resolve(__dirname, '../../dist'),
-  scss: path.resolve(__dirname, '../resources/scss'),
   src: path.resolve(__dirname, '..'),
 };
 

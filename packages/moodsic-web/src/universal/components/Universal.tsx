@@ -4,13 +4,7 @@ import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import styled from '@emotion/styled';
 
-// import Control from './Control';
 import Main from './Main';
-// import normalize from '@@src/universal/styles/normalize';
-
-// const normalizeStyle = css`
-//   ${normalize}
-// `;
 
 const customStyle = css({
   '*': {
@@ -42,7 +36,6 @@ const Universal: React.FC<any> = () => {
   return (
     <StyledUniversal>
       <Main />
-      {/* <Control /> */}
       {/* <Global
         styles={normalizeStyle}
       /> */}
