@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import express, {
   NextFunction,
+  Request,
 } from 'express';
 import expressIsomorphic, {
   Extend,
@@ -24,12 +25,17 @@ const paths = {
   assets: path.resolve(__dirname, '../../dist/assets'),
   build: path.resolve(__dirname, '../../build'),
   dist: path.resolve(__dirname, '../../dist'),
-  scss: path.resolve(__dirname, '../resources/scss'),
   src: path.resolve(__dirname, '..'),
 };
 
 const extend: Extend<IsomorphicState> = async (app, serverState) => {
-  app.use(express.static(paths.dist));
+  app.use((req: Request, res, next: NextFunction) => {
+    log('extend(): requestUrl: %s', req.url);
+    next();
+  });
+
+  app.use('/public/', express.static(paths.dist));
+
   app.use(launchStatusChecker(serverState));
 
   withWebpackDev({

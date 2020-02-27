@@ -5,7 +5,7 @@ const webpackConfigClientWeb = require('./webpack.config.client.web');
 
 const config = {
   entry: {
-    client: path.resolve(__dirname, '../ClientApp.tsx'),
+    client: path.resolve(paths.src, 'client/ClientApp.tsx'),
     react: ['react', 'react-dom'],
   },
   mode: 'production',
@@ -20,7 +20,7 @@ const config = {
     chunkFilename: 'chunk.[chunkhash].js',
     filename: '[name].[chunkhash].js',
     path: paths.dist,
-    publicPath: '/bundle/',
+    publicPath: '/public/',
   },
 };
 

@@ -1,5 +1,3 @@
-/* eslint-disable */
-/* eslint-disable import/no-extraneous-dependencies */
 const { argv } = require('yargs');
 const { logger } = require('jege/server');
 
@@ -13,11 +11,22 @@ require('@babel/register')({
   extensions: ['.js', '.jsx', '.ts', '.tsx'],
 });
 
-const server = require('../src/server/index.local').default;
-
 function launch() {
-  log('launcher(): argv: %j', argv);
-  server();
+  log('launch(): argv: %j, NODE_ENV: %s', argv, process.env.NODE_ENV);
+
+  if (process.env.NODE_ENV === 'production') {
+    const buildTask = gulp.task('build');
+    buildTask(() => {
+      const serverProd = require('../src/server/index.production').default;
+      serverProd();
+    });
+  } else {
+    const buildTask = gulp.task('build-dev');
+    buildTask(() => {
+      const server = require('../src/server/index.local').default;
+      server();
+    });
+  }
 }
 
 if (require.main === module) {

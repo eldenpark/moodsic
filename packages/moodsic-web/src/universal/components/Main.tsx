@@ -12,23 +12,6 @@ const Row = styled.div({
   marginBottom: 25,
 });
 
-const Submit = styled.input({
-  alignItems: 'center',
-  backgroundColor: '#FFA07A',
-  borderRadius: 8,
-  color: 'white',
-  cursor: 'pointer',
-  display: 'flex',
-  fontSize: 20,
-  justifyContent: 'center',
-  height: 40,
-  width: 210,
-  '&:hover': {
-    fontWeight: 600,
-    transform: 'translate(2px,2px)',
-  },
-});
-
 const FileInput = styled.input({
   backgroundColor: '#F5F5F5',
   cursor: 'pointer',
@@ -105,57 +88,17 @@ const Main = () => {
     form.labels = [];
   }, []);
 
-  const handleClickSubmit = React.useCallback(() => {
-    const formData = new FormData();
-    const files: any = document.getElementsByClassName('files');
-    const fileMap = {};
-    const form: any = document.getElementById('form');
+  const [startStop, setStartStop] = React.useState<any>('start');
 
-    for (let i = 0; i < files.length; i += 1) {
-      const file = files[i].files[0];
-      if (file !== undefined) {
-        console.log('Main(): including file: %o', file);
-
-        formData.append('files', file);
-        fileMap[file.name] = i;
-        const canvas: any = document.getElementById(`canvas-${i}`);
-        drawSpectrogram(file, canvas, i);
-      }
-    }
-
-    axios.post('http://localhost:4001/uploads', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-      .then(({ data }) => {
-        console.log('Main(): classification API success, response: %o', data);
-
-        if (data.payload && data.payload.length > 0) {
-          data.payload.forEach((file) => {
-            console.log('Main(): processing file: %o', file);
-
-            if (fileMap[file.filename] !== undefined) {
-              const label: any = document.getElementById(`label-${fileMap[file.filename]}`);
-              if (label !== null) {
-                const { classification, displayName } = file.result[0];
-                const normalizedScore = (+classification.score * 100) / 100;
-                form.labels.push(displayName);
-                const newLabel = `${displayName}-(${normalizedScore.toFixed(5)}%)`;
-                label.innerText = newLabel;
-              }
-            }
-          });
-        }
-      })
-      .catch((err) => {
-        console.warn('Main(): classification API fails, error: %o', err);
-      });
-  }, []);
+  const handleClickSubmit = React.useCallback(createHandleClickSubmit(
+    startStop,
+    setStartStop,
+  ), [startStop]);
 
   return (
     <div>
       <Form id="form">
+        {/* <img src="/public/assets/1.wav.png" alt=""/> */}
         <Row>
           <Input />
           <Spectrogram>
@@ -177,19 +120,10 @@ const Main = () => {
           </Spectrogram>
           <Label id={`label-${2}`} />
         </Row>
-        <Row>
-          <Input />
-          <Spectrogram>
-            <canvas id="canvas-3"/>
-          </Spectrogram>
-          <Label id={`label-${3}`} />
-        </Row>
-        <Control>
-          <Submit
-            onClick={handleClickSubmit}
-            type="button"
-            value="Run"
-          />
+        <Control
+          handleClickSubmit={handleClickSubmit}
+          startStop={startStop}
+        >
         </Control>
       </Form>
     </div>
@@ -197,6 +131,78 @@ const Main = () => {
 };
 
 export default Main;
+
+function createHandleClickSubmit(startStop, setStartStop) {
+  return () => {
+    const files: any = document.getElementsByClassName('files');
+    const form: any = document.getElementById('form');
+
+    if (startStop === 'start') {
+      setStartStop('stop');
+
+      const formData = new FormData();
+      const fileMap = {};
+
+      for (let i = 0; i < files.length; i += 1) {
+        const file = files[i].files[0];
+        if (file !== undefined) {
+          console.log('Main(): including file: %o', file);
+
+          formData.append('files', file);
+          fileMap[file.name] = i;
+          const canvas: any = document.getElementById(`canvas-${i}`);
+          drawSpectrogram(file, canvas, i);
+        }
+      }
+
+      if (Object.keys(fileMap).length > 0) {
+        axios.post('http://localhost:4001/uploads', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+          .then(({ data }) => {
+            console.log('Main(): classification API success, response: %o', data);
+
+            if (data.payload && data.payload.length > 0) {
+              data.payload.forEach((file) => {
+                console.log('Main(): processing file: %o', file);
+
+                if (fileMap[file.filename] !== undefined) {
+                  const label: any = document.getElementById(`label-${fileMap[file.filename]}`);
+                  if (label !== null) {
+                    const { classification, displayName } = file.result[0];
+                    const normalizedScore = (+classification.score * 100) / 100;
+                    form.labels.push(displayName);
+                    const newLabel = `${displayName}-(${normalizedScore.toFixed(5)}%)`;
+                    label.innerText = newLabel;
+                  }
+                }
+              });
+            }
+          })
+          .catch((err) => {
+            console.warn('Main(): classification API fails, error: %o', err);
+          });
+      }
+    } else {
+      setStartStop('start');
+
+      for (let i = 0; i < files.length; i += 1) {
+        const file = files[i].files[0];
+        if (file !== undefined) {
+          console.log('Main(): including file: %o', file);
+
+          const canvas = document.getElementById(`canvas-${i}`) as HTMLCanvasElement;
+          const context = canvas.getContext('2d')!;
+          context.clearRect(0, 0, canvas.width, canvas.height);
+
+          form.sources[i].stop();
+        }
+      }
+    }
+  };
+}
 
 function drawSpectrogram(file, canvasElement, idx) {
   console.log('drawSpectrogram(): idx: %s', idx);

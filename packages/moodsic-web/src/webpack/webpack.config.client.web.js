@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 const babelRc = require('../../scripts/.babelrc');
 
@@ -47,6 +48,9 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
   ],
   resolve: {
     extensions: [

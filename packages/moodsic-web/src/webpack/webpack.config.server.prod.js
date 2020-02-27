@@ -1,6 +1,5 @@
 const merge = require('webpack-merge');
 const path = require('path');
-const webpack = require('webpack');
 
 const paths = require('./paths');
 const webpackConfigClientWeb = require('./webpack.config.client.web');
@@ -8,24 +7,23 @@ const webpackConfigClientWeb = require('./webpack.config.client.web');
 const config = {
   devtool: 'source-map',
   entry: {
-    client: [
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client',
-      path.resolve(paths.src, 'client/ClientApp.tsx'),
+    makeHtml: [
+      path.resolve(paths.src, 'server/makeHtml.prod.tsx'),
     ],
   },
-  mode: 'development',
+  mode: 'production',
   optimization: {
     minimize: false,
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: 'makeHtml.bundle.js',
+    libraryTarget: 'commonjs2',
+    path: paths.build,
     publicPath: '/public/',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
   ],
+  target: 'node',
 };
 
 module.exports = merge(webpackConfigClientWeb, config);

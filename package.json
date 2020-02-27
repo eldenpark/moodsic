@@ -24,8 +24,8 @@
   "private": true,
   "scripts": {
     "backend": "node ./scripts/launcher.js --process=moodsicWebBackend",
-    "build": "node ./scripts/builder.js",
     "dev": "npm-run-all -p web backend",
+    "docs": "NODE_ENV=production yarn run web",
     "launch": "node ./scripts/launcher.js",
     "lerna": "node ./node_modules/.bin/lerna",
     "spectrogram": "node ./scripts/launcher.js --process=spectrogramCreator",

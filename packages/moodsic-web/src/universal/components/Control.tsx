@@ -8,9 +8,9 @@ const StyledControl = styled.div({
   },
 });
 
-const Button = styled.div({
+const Button = styled.div<any>(({ bgColor }) => ({
   alignItems: 'center',
-  backgroundColor: '#28d8b7',
+  backgroundColor: bgColor,
   borderRadius: 8 ,
   cursor: 'pointer',
   display: 'flex',
@@ -18,14 +18,32 @@ const Button = styled.div({
   justifyContent: 'center',
   marginBottom: 30,
   width: 150,
-'&:hover': {
+  '&:hover': {
+    fontWeight: 600,
+    transform: 'translate(2px,2px)',
+  },
+}));
+
+const Submit = styled.input({
+  alignItems: 'center',
+  backgroundColor: '#FFA07A',
+  borderRadius: 8,
+  color: 'white',
+  cursor: 'pointer',
+  display: 'flex',
+  fontSize: 20,
+  justifyContent: 'center',
+  height: 40,
+  width: 210,
+  '&:hover': {
     fontWeight: 600,
     transform: 'translate(2px,2px)',
   },
 });
 
-const Control: React.FC = ({
-  children,
+const Control: React.FC<any> = ({
+  handleClickSubmit,
+  startStop,
 }) => {
   const handleClickButton = React.useCallback((e, label) => {
     const form: any = document.getElementById('form');
@@ -45,20 +63,33 @@ const Control: React.FC = ({
 
   return (
     <StyledControl>
-      {children}
+      <Submit
+        onClick={handleClickSubmit}
+        type="button"
+        value={startStop}
+      />
       <div>
-        <Button onClick={(e) => handleClickButton(e, 'happy')}>
+        <Button
+          bgColor="#f1819b"
+          onClick={(e) => handleClickButton(e, 'happy')}
+        >
           Happy
         </Button>
       </div>
       <div>
-        <Button onClick={(e) => handleClickButton(e, 'calm')}>
+        <Button
+          bgColor="#f7eead"
+          onClick={(e) => handleClickButton(e, 'calm')}
+        >
           Calm
         </Button>
       </div>
       <div>
-      <Button onClick={(e) => handleClickButton(e, 'sad')}>
-          Sad
+        <Button
+          bgColor="#28a8d8"
+          onClick={(e) => handleClickButton(e, 'sad')}
+        >
+            Sad
         </Button>
       </div>
     </StyledControl>

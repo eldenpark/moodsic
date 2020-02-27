@@ -22,7 +22,7 @@ const makeHtml: MakeHtml<IsomorphicState> = async ({
 }) => {
   log('makeHtml');
 
-  const { socketPath, socketPort, state } = serverState;
+  const { state } = serverState;
   const {
     assets,
     publicPath,
@@ -33,7 +33,6 @@ const makeHtml: MakeHtml<IsomorphicState> = async ({
     ssr: true,
   });
   const reactAssetElements = createAssetElements(assets, publicPath);
-  const processEnvElement = createStringifiableObjectElement('__FORM_ENV__', getProcessEnv('FORM'));
 
   const element = (
     <ServerApp
@@ -49,22 +48,16 @@ const makeHtml: MakeHtml<IsomorphicState> = async ({
 
   const html = template({
     fontAwesomeCss: dom.css(),
-    processEnvElement,
     reactAppInString,
     reactAssetElements,
-    socketPath,
-    socketPort,
   });
   return html;
 };
 
 function template({
   fontAwesomeCss,
-  processEnvElement,
   reactAppInString,
   reactAssetElements,
-  socketPath,
-  socketPort,
 }) {
   return `
 <html>
@@ -77,19 +70,9 @@ function template({
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
-    ${processEnvElement}
   </head>
   <div id="react-root">${reactAppInString}</div>
   ${reactAssetElements}
-  <script>
-    if (window.io) {
-      var socket = io('http://localhost:${socketPort}', {
-        path: '${socketPath}'
-      });
-      socket.on('express-isomorphic', function ({ msg }) {
-        console.warn('[express-isomorphic] %s', msg);
-      });
-    }
   </script>
 </html>
 `;
