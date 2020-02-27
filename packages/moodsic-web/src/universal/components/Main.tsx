@@ -12,28 +12,30 @@ const Row = styled.div({
   marginBottom: 25,
 });
 
-const FileInput = styled.input({
-  backgroundColor: '#F5F5F5',
-  cursor: 'pointer',
-  display: 'inline-block',
-  borderRadius: "8px",
-  height: 45,
-  padding: 10,
-  width: 250,
-  '&:hover': {
+const StyledInput = styled.div({
+  borderRadius: 7,
+  display: 'flex',
+  flexDirection: 'column',
+  fontSize: 12,
+  width: 230,
+  '& input': {
+    borderBottom: '1px solid #bfbfbf',
+    cursor: 'pointer',
+    paddingBottom: 2,
+  },
+  '& input:hover': {
     fontWeight: 600,
-    transform: 'translate(2px,2px)',
   },
 });
 
 const Input = () => {
   return (
-    <div>
-      <FileInput
+    <StyledInput>
+      <input
         className="files"
         type="file"
       />
-    </div>
+    </StyledInput>
   );
 };
 
@@ -42,22 +44,22 @@ const Spectrogram = styled.div({
   display: 'inline-block',
   marginLeft: 20,
   '& canvas': {
-    width: 550,
-    height: 120,
+    width: 350,
+    height: 85,
   },
 });
 
 const StyledLabel = styled.div({
-  display: 'inline-block',
-  borderRadius: '8px',
-  height: 30,
   marginLeft: 20,
   width: 100,
   '& p': {
     color: '#565656',
   },
   '& p:first-child': {
+    borderBottom: '1px solid #bfbfbf',
+    fontSize: 12,
     fontWeight: 600,
+    padding: '2 0 2',
   },
   '& .focus': {
     color: 'white',
@@ -65,7 +67,7 @@ const StyledLabel = styled.div({
     backgroundColor: '#0a0c0c',
   },
   '& > p:last-child': {
-    padding: 10,
+    paddingTop: 10,
   },
 });
 
@@ -75,7 +77,7 @@ const Label = ({
   return (
     <StyledLabel className="label">
       <p>Classification</p>
-      <p id={id}>-  </p>
+      <p id={id}>-</p>
     </StyledLabel>
   );
 };
@@ -88,7 +90,7 @@ const Main = () => {
     form.labels = [];
   }, []);
 
-  const [startStop, setStartStop] = React.useState<any>('start');
+  const [startStop, setStartStop] = React.useState<any>('Start');
 
   const handleClickSubmit = React.useCallback(createHandleClickSubmit(
     startStop,
@@ -137,8 +139,8 @@ function createHandleClickSubmit(startStop, setStartStop) {
     const files: any = document.getElementsByClassName('files');
     const form: any = document.getElementById('form');
 
-    if (startStop === 'start') {
-      setStartStop('stop');
+    if (startStop === 'Start') {
+      setStartStop('Stop');
 
       const formData = new FormData();
       const fileMap = {};
@@ -174,8 +176,8 @@ function createHandleClickSubmit(startStop, setStartStop) {
                     const { classification, displayName } = file.result[0];
                     const normalizedScore = (+classification.score * 100) / 100;
                     form.labels.push(displayName);
-                    const newLabel = `${displayName}-(${normalizedScore.toFixed(5)}%)`;
-                    label.innerText = newLabel;
+                    const newLabel = `<b>${displayName}</b> (${normalizedScore.toFixed(5)}%)`;
+                    label.innerHTML = newLabel;
                   }
                 }
               });
@@ -186,7 +188,7 @@ function createHandleClickSubmit(startStop, setStartStop) {
           });
       }
     } else {
-      setStartStop('start');
+      setStartStop('Start');
 
       for (let i = 0; i < files.length; i += 1) {
         const file = files[i].files[0];
@@ -214,7 +216,7 @@ function drawSpectrogram(file, canvasElement, idx) {
     return;
   }
 
-  const WIDTH = canvasElement.width;
+  const canvasWidth = canvasElement.width;
   const audioContext = new (window.AudioContext || window['webkitAudioContext'])();
   const canvasContext = canvasElement.getContext('2d');
   const form: any = document.getElementById('form');
@@ -281,7 +283,7 @@ function drawSpectrogram(file, canvasElement, idx) {
 
     canvasContext.putImageData(imageDataFrame, x, 0);
 
-    if (x < WIDTH) {
+    if (x < canvasWidth) {
       x += 1;
     } else {
       x = 0;

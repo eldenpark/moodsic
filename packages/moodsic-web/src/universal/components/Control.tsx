@@ -8,37 +8,30 @@ const StyledControl = styled.div({
   },
 });
 
-const Button = styled.div<any>(({ bgColor }) => ({
+const Button = styled.button<any>(({ bgColor }) => ({
   alignItems: 'center',
   backgroundColor: bgColor,
-  borderRadius: 8 ,
+  borderRadius: 8,
   cursor: 'pointer',
   display: 'flex',
-  height: 40,
+  fontSize: 15,
+  height: 36,
   justifyContent: 'center',
-  marginBottom: 30,
-  width: 150,
+  width: 100,
   '&:hover': {
-    fontWeight: 600,
-    transform: 'translate(2px,2px)',
+    fontWeight: 800,
+    transform: 'translate(1px,1px)',
   },
 }));
 
-const Submit = styled.input({
-  alignItems: 'center',
-  backgroundColor: '#FFA07A',
-  borderRadius: 8,
+const Submit = styled(Button)({
+  backgroundColor: '#3c3938',
   color: 'white',
-  cursor: 'pointer',
-  display: 'flex',
-  fontSize: 20,
-  justifyContent: 'center',
-  height: 40,
-  width: 210,
-  '&:hover': {
-    fontWeight: 600,
-    transform: 'translate(2px,2px)',
-  },
+  width: 120,
+});
+
+const Left = styled.div({
+  width: 230,
 });
 
 const Control: React.FC<any> = ({
@@ -63,11 +56,14 @@ const Control: React.FC<any> = ({
 
   return (
     <StyledControl>
-      <Submit
-        onClick={handleClickSubmit}
-        type="button"
-        value={startStop}
-      />
+      <Left>
+        <Submit
+          onClick={handleClickSubmit}
+          type="button"
+        >
+          {startStop}
+        </Submit>
+      </Left>
       <div>
         <Button
           bgColor="#f1819b"

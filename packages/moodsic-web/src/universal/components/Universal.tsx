@@ -16,6 +16,9 @@ const customStyle = css({
   },
   body: {
   },
+  button: {
+    border: 0,
+  },
   input: {
     border: 'none',
     outline: 'none',
@@ -28,6 +31,7 @@ const customStyle = css({
 const StyledUniversal = styled.div({
   display: 'flex',
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif;',
+  fontSize: 14,
   justifyContent: 'center',
   paddingTop: 40,
 });
