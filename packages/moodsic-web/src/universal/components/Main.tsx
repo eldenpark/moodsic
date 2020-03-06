@@ -3,128 +3,54 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Control from '@@src/universal/components/Control';
+import {
+  FileMap,
+  FormType,
+} from '@@src/universal/components/types';
+import pregeneratedData from '@@src/universal/pregeneratedData';
+import Row from '@@src/universal/components/Row';
 
 const Form = styled.form({
 });
 
-const Row = styled.div({
-  display: 'flex',
-  marginBottom: 25,
-});
-
-const StyledInput = styled.div({
-  borderRadius: 7,
-  display: 'flex',
-  flexDirection: 'column',
-  fontSize: 12,
-  width: 230,
-  '& input': {
-    borderBottom: '1px solid #bfbfbf',
-    cursor: 'pointer',
-    paddingBottom: 2,
-  },
-  '& input:hover': {
-    fontWeight: 600,
-  },
-});
-
-const Input = () => {
-  return (
-    <StyledInput>
-      <input
-        className="files"
-        type="file"
-      />
-    </StyledInput>
-  );
-};
-
-const Spectrogram = styled.div({
-  backgroundColor: '#f7fafb',
-  display: 'inline-block',
-  marginLeft: 20,
-  '& canvas': {
-    width: 350,
-    height: 85,
-  },
-});
-
-const StyledLabel = styled.div({
-  marginLeft: 20,
-  width: 100,
-  '& p': {
-    color: '#565656',
-  },
-  '& p:first-child': {
-    borderBottom: '1px solid #bfbfbf',
-    fontSize: 12,
-    fontWeight: 600,
-    padding: '2 0 2',
-  },
-  '& .focus': {
-    color: 'white',
-    fontWeight: 600,
-    backgroundColor: '#0a0c0c',
-  },
-  '& > p:last-child': {
-    paddingTop: 10,
-  },
-});
-
-const Label = ({
-  id,
-}) => {
-  return (
-    <StyledLabel className="label">
-      <p>Classification</p>
-      <p id={id}>-</p>
-    </StyledLabel>
-  );
-};
-
 const Main = () => {
   React.useEffect(() => {
     console.log('Main(): useEffect(): main is rendered');
-    const form: any = document.getElementById('form');
+    const form = document.getElementById('form') as FormType;
     form.sources = [];
     form.labels = [];
   }, []);
 
-  const [startStop, setStartStop] = React.useState<any>('Start');
+  const startStopState = React.useRef<any>('Start');
+  const [, updateState] = React.useState();
+  const setStartStopState = React.useCallback((nextState) => {
+    startStopState.current = nextState;
+    updateState({});
+  }, []);
 
   const handleClickSubmit = React.useCallback(createHandleClickSubmit(
-    startStop,
-    setStartStop,
-  ), [startStop]);
+    startStopState,
+    setStartStopState,
+  ), [startStopState]);
 
   return (
     <div>
       <Form id="form">
-        {/* <img src="/public/assets/1.wav.png" alt=""/> */}
-        <Row>
-          <Input />
-          <Spectrogram>
-            <canvas id="canvas-0"/>
-          </Spectrogram>
-          <Label id={`label-${0}`} />
-        </Row>
-        <Row>
-          <Input />
-          <Spectrogram>
-            <canvas id="canvas-1"/>
-          </Spectrogram>
-          <Label id={`label-${1}`} />
-        </Row>
-        <Row>
-          <Input />
-          <Spectrogram>
-            <canvas id="canvas-2"/>
-          </Spectrogram>
-          <Label id={`label-${2}`} />
-        </Row>
+        <Row
+          itemId="0"
+          pregeneratedData={pregeneratedData[0]}
+        />
+        <Row
+          itemId="1"
+          pregeneratedData={pregeneratedData[1]}
+        />
+        <Row
+          itemId="2"
+          pregeneratedData={pregeneratedData[2]}
+        />
         <Control
           handleClickSubmit={handleClickSubmit}
-          startStop={startStop}
+          startStopState={startStopState}
         >
         </Control>
       </Form>
@@ -134,44 +60,78 @@ const Main = () => {
 
 export default Main;
 
-function createHandleClickSubmit(startStop, setStartStop) {
+function createHandleClickSubmit(
+  startStopState: { current: string },
+  setStartStopState,
+) {
+  const isProd = process.env.NODE_ENV === 'production';
+
   return () => {
     const files: any = document.getElementsByClassName('files');
-    const form: any = document.getElementById('form');
+    const form = document.getElementById('form') as FormType;
 
-    if (startStop === 'Start') {
-      setStartStop('Stop');
+    console.log('createHandleclickSubmit(): startStop: %s', startStopState.current);
+
+    if (startStopState.current === 'Start') {
+      setStartStopState('Stop');
 
       const formData = new FormData();
-      const fileMap = {};
+      const fileMap: FileMap = {};
 
       for (let i = 0; i < files.length; i += 1) {
         const file = files[i].files[0];
+        const canvas: any = document.getElementById(`canvas-${i}`);
         if (file !== undefined) {
-          console.log('Main(): including file: %o', file);
+          console.log('createHandleclickSubmit(): start, file: %o', file);
 
           formData.append('files', file);
           fileMap[file.name] = i;
-          const canvas: any = document.getElementById(`canvas-${i}`);
-          drawSpectrogram(file, canvas, i);
+          drawSpectrogram(file, canvas, i, startStopState);
+        }
+
+        if (isProd) {
+          const fileUrl = document.getElementById(`fileUrl-production-${i}`);
+
+          if (fileUrl !== null) {
+            axios.get(fileUrl.innerText, {
+              responseType: 'blob',
+            })
+              .then((response) => {
+                const { data } = response;
+                const _pregeneratedData = pregeneratedData[i];
+
+                console.log('createHandleclickSubmit(): NODE_ENV: production, including data: %o', data);
+
+                const label: any = document.getElementById(`classification-${i}`);
+                if (label !== null) {
+                  const { classification, displayName } = _pregeneratedData.classify;
+                  const normalizedScore = (+classification.score * 100) / 100;
+                  form.labels.push(displayName);
+                  const newLabel = `<b>${displayName}</b> (${normalizedScore.toFixed(5)}%)`;
+                  label.innerHTML = newLabel;
+                }
+
+                drawSpectrogram(data, canvas, i, startStopState);
+              });
+          }
         }
       }
 
-      if (Object.keys(fileMap).length > 0) {
+      if (Object.keys(fileMap).length > 0 && !isProd) {
         axios.post('http://localhost:4001/uploads', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         })
           .then(({ data }) => {
-            console.log('Main(): classification API success, response: %o', data);
+            console.log('createHandleclickSubmit(): classification API success, response: %o', data);
 
             if (data.payload && data.payload.length > 0) {
               data.payload.forEach((file) => {
-                console.log('Main(): processing file: %o', file);
+                console.log('createHandleclickSubmit(): processing file: %o', file);
 
                 if (fileMap[file.filename] !== undefined) {
-                  const label: any = document.getElementById(`label-${fileMap[file.filename]}`);
+                  const label: any = document.getElementById(`classification-${fileMap[file.filename]}`);
                   if (label !== null) {
                     const { classification, displayName } = file.result[0];
                     const normalizedScore = (+classification.score * 100) / 100;
@@ -184,29 +144,39 @@ function createHandleClickSubmit(startStop, setStartStop) {
             }
           })
           .catch((err) => {
-            console.warn('Main(): classification API fails, error: %o', err);
+            console.warn('createHandleclickSubmit(): classification API fails, error: %o', err);
           });
       }
     } else {
-      setStartStop('Start');
+      setStartStopState('Start');
 
       for (let i = 0; i < files.length; i += 1) {
         const file = files[i].files[0];
-        if (file !== undefined) {
-          console.log('Main(): including file: %o', file);
+        console.log('createHandleclickSubmit(): stop, i: %s, file: %o, sources: %o', i, file, form.sources);
 
+        if (form.sources[i] !== undefined) {
+          console.log('createHandleclickSubmit(): stop source, i:%s', i);
+          form.sources[i].stop();
+        }
+
+        setTimeout(() => {
           const canvas = document.getElementById(`canvas-${i}`) as HTMLCanvasElement;
           const context = canvas.getContext('2d')!;
           context.clearRect(0, 0, canvas.width, canvas.height);
-
-          form.sources[i].stop();
-        }
+        }, 200);
       }
+
+      form.sources = [];
     }
   };
 }
 
-function drawSpectrogram(file, canvasElement, idx) {
+function drawSpectrogram(
+  file: Blob,
+  canvasElement: HTMLCanvasElement,
+  idx: number,
+  startStopState,
+) {
   console.log('drawSpectrogram(): idx: %s', idx);
 
   try {
@@ -239,7 +209,7 @@ function drawSpectrogram(file, canvasElement, idx) {
     || navigator['mozGetUserMedia']
     || navigator['msGetUserMedia'];
 
-  imageDataFrame = canvasContext.createImageData(2, canvasElement.height);
+  imageDataFrame = canvasContext!.createImageData(2, canvasElement.height);
 
   for (var index = 0; index < imageDataFrame.data.length * 4; index += 8) {
     imageDataFrame.data[index] = imageDataFrame.data[index + 6] = 0;
@@ -273,7 +243,9 @@ function drawSpectrogram(file, canvasElement, idx) {
   reader.readAsArrayBuffer(file);
 
   function draw() {
-    requestAnimationFrame(draw);
+    if (startStopState.current === 'Stop') {
+      requestAnimationFrame(draw);
+    }
     analyser.getByteFrequencyData(dataArray);
 
     for (var index = 0, _o = eightBufferLength; index < bufferLength; ++index, _o -= 8) {
@@ -281,7 +253,7 @@ function drawSpectrogram(file, canvasElement, idx) {
         imageDataFrame.data[_o + 1] = dataArray[index] * 2;
     }
 
-    canvasContext.putImageData(imageDataFrame, x, 0);
+    canvasContext!.putImageData(imageDataFrame, x, 0);
 
     if (x < canvasWidth) {
       x += 1;

@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import {
+  FormType,
+} from '@@src/universal/components/types';
+
 const StyledControl = styled.div({
   display: 'flex',
   '& > *': {
@@ -36,19 +40,20 @@ const Left = styled.div({
 
 const Control: React.FC<any> = ({
   handleClickSubmit,
-  startStop,
+  startStopState,
 }) => {
   const handleClickButton = React.useCallback((e, label) => {
-    const form: any = document.getElementById('form');
+    const form = document.getElementById('form') as FormType;
     const index = form.labels.indexOf(label);
-    console.log('Control(): only playing index: %s', index);
+    console.log('Control(): only playing index: %s, label: %s, sources: %o, labels: %o', index, label, form.sources, form.labels);
 
     form.sources.forEach((source, idx) => {
       if (idx !== index) {
         console.log('Control(): source at: %s will stop', idx);
         source.stop(0);
       } else {
-        const label: any = document.getElementById(`label-${idx}`);
+        console.log('Control(): found the source of index: %s', idx);
+        const label: any = document.getElementById(`classification-${idx}`);
         label.classList.add('focus');
       }
     });
@@ -61,13 +66,14 @@ const Control: React.FC<any> = ({
           onClick={handleClickSubmit}
           type="button"
         >
-          {startStop}
+          {startStopState.current}
         </Submit>
       </Left>
       <div>
         <Button
           bgColor="#f1819b"
           onClick={(e) => handleClickButton(e, 'happy')}
+          type="button"
         >
           Happy
         </Button>
@@ -76,6 +82,7 @@ const Control: React.FC<any> = ({
         <Button
           bgColor="#f7eead"
           onClick={(e) => handleClickButton(e, 'calm')}
+          type="button"
         >
           Calm
         </Button>
@@ -84,6 +91,7 @@ const Control: React.FC<any> = ({
         <Button
           bgColor="#28a8d8"
           onClick={(e) => handleClickButton(e, 'sad')}
+          type="button"
         >
             Sad
         </Button>

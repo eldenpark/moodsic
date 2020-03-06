@@ -7,10 +7,6 @@ import styled from '@emotion/styled';
 import Main from './Main';
 
 const customStyle = css({
-  '*': {
-    boxSizing: 'border-box',
-    color: 'black',
-  },
   a: {
     textDecoration: 'none',
   },
@@ -25,6 +21,13 @@ const customStyle = css({
   },
   p: {
     margin: 0,
+  },
+  '.hide': {
+    display: 'none',
+  },
+  '*': {
+    boxSizing: 'border-box',
+    color: 'black',
   },
 });
 

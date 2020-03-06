@@ -88,7 +88,7 @@ module.exports = function server() {
         },
       };
       const [response] = await predictionClient.predict(request);
-      log('/uploads: succees getting prediction: %s', response);
+      log('/uploads: succees getting prediction: %j', response);
 
       return {
         filename: file.originalname,
