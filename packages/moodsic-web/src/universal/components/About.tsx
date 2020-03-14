@@ -51,7 +51,7 @@ const About = ({
             The project also explores the power of cloud based machine intelligence. See the <a href="http://github.com/eldeni/moodsic">documentation</a> to learn more.
           </P>
           <P>
-            This is a demo page and the application is set to process pre-determined 3 songs. Click Start or Start Over to launch or stop the application.
+            This is a demo page and the application is set to process <b>pre-determined 3 songs</b>. Click Start or Start Over to launch or stop the application.
             Once it gets the classification result, you can then listen to a song of specific mood by clicking the emotion.
           </P>
         </div>
