@@ -1,0 +1,100 @@
+1,001.Beatles - Yesterday.wav,sad
+2,024.The Mamas And The Papas - California Dreamin'.wav,sad
+3,Portugal The Man - Feel It Still.wav,sad
+4,01 - The XX - Angels.wav,sad
+5,004.Celine Dion - My Heart Will Go On.wav,sad
+6,005.Eagles - Hotel California.wav,sad
+7,19. Someone You Loved - Lewis Capaldi.wav,sad
+8,020.Chicago - Hard To Say I'm Sorry.wav,sad
+9,51. What If I Never Get Over You - Lady Antebellum.wav,sad
+10,64. when the party's over - Billie Eilish.wav,sad
+11,70. Castles - Freya Ridings.wav,sad
+12,071.Journey - Open Arms.wav,sad
+13,102.My all-Mariah carey.wav,sad
+14,154.Don't cry for me argentina-Madonna.wav,sad
+15,189.You're still the one-Shania Twain.wav,sad
+16,All of Me - John Legend.wav,sad
+17,Jeff Buckley - Hallelujah.wav,sad
+18,Let Her Go - Passenger.wav,sad
+19,Say Something - A Great Big World & Christina Aguilera.wav,sad
+20,The Band Perry - If I Die Young.wav,sad
+21,Daughter - Youth.wav,sad
+22,Mumford & Sons - Broken Crown.wav,sad
+23,06 Birdy - Skinny Love.wav,sad
+24,05 Creep.wav,sad
+25,Death Cab for Cutie - I'll Follow You Into The Dark.wav,sad
+26,01  Leona Lewis - Bleeding Love.wav,sad
+27,The Night We Met.wav,sad
+28,07 - Make you feel my love.wav,sad
+29,The Fray - How to Save a Life.wav,sad
+30,04 I'm Not The Only One.wav,sad
+31,01 - Somebody That I Used To Know - Gotyer.wav,sad
+32,26 - It Will Rain - Bruno Mars.wav,sad
+33,69 - Paradise - Coldplay.wav,sad
+34,87 - A Thousand Years - Christina Perri.wav,sad
+35,90. The Weeknd - Call Out My Name.wav,sad
+36,03 - chasing cars.wav,sad
+37,Just Dance - Lady GaGa.wav,happy
+38,13. Old Town Road - Lil Nas X.wav,happy
+39,The Lumineers - Ho Hey.wav,happy
+40,01 One Dance (feat. Wizkid & Kyla).wav,happy
+41,22 - Everybody Talks - Neon Trees.wav,happy
+42,81. Hot Girl Summer - Megan thee Stallion_Nicki Minaj_Ty Dolla $ign.wav,happy
+43,Sweet Caroline.wav,happy
+44,Valery - Amy Winehouse.wav,happy
+45,OutKast - Hey Ya.wav,happy
+46,11. Ella Mai - Boo'd Up.wav,happy
+47,Pink - Raise Your Glass.wav,happy
+48,DJ Got Us Fallin’ In Love - Usher featuring Pitbull.wav,happy
+49,Estelle - American Boy ft Kanye West.wav,happy
+50,02 - Call Me Maybe - Carly Rae Jepsen.wav,happy
+51,03 - We Are Young - Fun.wav,happy
+52,05 - Lights - Ellie Goulding.wav,happy
+53,06 - Glad You Came - The Wanted.wav,happy
+54,09 - Starships - Nicki.wav,happy
+55,10 - What Makes You Beautiful - One Direction.wav,happy
+56,24 - Titanium - David Guetta.wav,happy
+57,29 - Party Rock Anthem - LMFAO.wav,happy
+58,32 - Young, Wild & Free - Snoop Dogg & Wiz Khalifa.wav,happy
+59,47 - GANGNAM STYLE - PSY.wav,happy
+60,15. Ariana Grande - No Tears Left to Cry.wav,happy
+61,31. Shawn Mendes - In My Blood.wav,happy
+62,33. Marshmello & Anne-Marie - FRIENDS.wav,happy
+63,52. Lauv - I Like Me Better.wav,happy
+64,73. David Lee Murphy & Kenny Chesney - Everythings Gonna Be Alright.wav,happy
+65,05. Maroon 5 - Girls Like You (feat. Cardi B).wav,happy
+66,67. YG - Big Bank (feat. 2 Chainz, Big Sean & Nicki Minaj).wav,happy
+67,Black Eyed Peas - I Gotta Feeling (Radio).wav,happy
+68,Party_In_The_USA - Miley Cyrus.wav,happy
+69,33. Marshmello & Anne-Marie - FRIENDS (online-audio-converter.com).wav,happy
+70,15. Ariana Grande - No Tears Left to Cry (online-audio-converter.com).wav,happy
+71,Brahms - Waltz in A Flat.wav,calm
+72,10 - Chopin.wav,calm
+73,01 - Moonlight Sonata - Beethoven.wav,calm
+74,05 - Andante Spianato - Chopin.wav,calm
+75,02 - Clair De Lune - Debussy.wav,calm
+76,Puccini- O Mio Babbino Caro from -Gianni Schicchi.wav,calm
+77,Bach - Concerto No.3 In D Major.wav,calm
+78,PDQ Bach - Simply Grand Minuet.wav,calm
+79,Mendelssohn - Hebrides Overture (Fingal's Cave).wav,calm
+80,Beethoven - Immortal Beloved - 07 - Piano Sonata No.8 in C .wav,calm
+81,01. Piano concerto No. 9 in Eb major, K. 271 - Allegro.wav,calm
+82,04. Piano concerto No. 17 in G major, K. 453 - Allegro.wav,calm
+83,Beethoven - 9th Symphony 4th Movement (Ode To Joy).wav,calm
+84,Pachabel - Canon in D.wav,calm
+85,02 - John Williams - Schindlers List (Theme).wav,calm
+86,debussy_reverie_HS_PT.wav,calm
+87,Handel -- Water Music.wav,calm
+88,Liszt - Liebestraum.wav,calm
+89,Handel - Concerto Grosso No. 1.wav,calm
+90,Verdi - La Traviata Overture.wav,calm
+91,Tchaikovsky - Swan Lake- Dance of the Swans.wav,calm
+92,Arabesque-Op-18-Schumann.wav,calm
+93,Romance-in-F-Sharp-Major-Op-28-No-2-Schumann.wav,calm
+94,Eighteenth-Variation-from-Rapsodie-on-a-Theme-of-Paganini-Rachmaninoff.wav,calm
+95,03 - Concerto RV.269 op.8-1 La Primavera - 3. Allegro.wav,calm
+96,03. The Four Seasons - Concerto No. 1 in E major. Spring - D.wav,calm
+97,Fantasia 2000 - 08 Firebird Suite - 1919 Version - Stravinsky.wav,calm
+98,Mozart- Midnight Sonata.wav,calm
+99,Strauss- One The Beautiful, Blue Danube Waltz.wav,calm
+100,05. Piano concerto No. 17 in G major, K. 453 - Andante.wav,calm
