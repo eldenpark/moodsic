@@ -1,7 +1,7 @@
 {
   "errors": [],
   "warnings": [],
-  "builtAt": 1584175217096,
+  "builtAt": 1584176099700,
   "assetsByChunkName": {
     "vendors~client~react": "chunk.9dcd693f7e996fc572ac.js",
     "client": "client.da09913fdc59b80693e3.js",
