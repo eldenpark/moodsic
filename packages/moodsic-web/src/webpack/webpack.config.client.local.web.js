@@ -20,7 +20,7 @@ const config = {
   },
   output: {
     filename: '[name].[hash].js',
-    publicPath: '/',
+    publicPath: '/moodsic/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

@@ -33,7 +33,7 @@ const extend: Extend<IsomorphicState> = async (app, serverState) => {
     next();
   });
 
-  app.use('/', express.static(paths.dist));
+  app.use('/moodsic/', express.static(paths.dist));
 
   app.use(launchStatusChecker(serverState));
 

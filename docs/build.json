@@ -1,29 +1,17 @@
 {
   "errors": [],
   "warnings": [],
-  "builtAt": 1584171848976,
+  "builtAt": 1584175217096,
   "assetsByChunkName": {
-    "vendors~client~react": [
-      "chunk.9dcd693f7e996fc572ac.js",
-      "chunk.9dcd693f7e996fc572ac.js.map"
-    ],
-    "client": [
-      "client.87cd6166d8c18fd761eb.js",
-      "client.87cd6166d8c18fd761eb.js.map"
-    ],
-    "react": [
-      "react.e8a37f09fa011b8f4efd.js",
-      "react.e8a37f09fa011b8f4efd.js.map"
-    ],
-    "vendors~client": [
-      "chunk.26eb697cdfb9681cf3dc.js",
-      "chunk.26eb697cdfb9681cf3dc.js.map"
-    ]
+    "vendors~client~react": "chunk.9dcd693f7e996fc572ac.js",
+    "client": "client.da09913fdc59b80693e3.js",
+    "react": "react.89ca4a3a92124b0ae370.js",
+    "vendors~client": "chunk.26eb697cdfb9681cf3dc.js"
   },
   "assets": [
     {
       "name": "chunk.26eb697cdfb9681cf3dc.js",
-      "size": 63666,
+      "size": 63611,
       "chunks": [
         3
       ],
@@ -32,26 +20,12 @@
       ],
       "info": {
         "immutable": true
-      },
-      "emitted": true
-    },
-    {
-      "name": "chunk.26eb697cdfb9681cf3dc.js.map",
-      "size": 328790,
-      "chunks": [
-        3
-      ],
-      "chunkNames": [
-        "vendors~client"
-      ],
-      "info": {
-        "development": true
       },
       "emitted": true
     },
     {
       "name": "chunk.9dcd693f7e996fc572ac.js",
-      "size": 129898,
+      "size": 129843,
       "chunks": [
         0
       ],
@@ -64,22 +38,8 @@
       "emitted": true
     },
     {
-      "name": "chunk.9dcd693f7e996fc572ac.js.map",
-      "size": 313591,
-      "chunks": [
-        0
-      ],
-      "chunkNames": [
-        "vendors~client~react"
-      ],
-      "info": {
-        "development": true
-      },
-      "emitted": true
-    },
-    {
-      "name": "client.87cd6166d8c18fd761eb.js",
-      "size": 11614,
+      "name": "client.da09913fdc59b80693e3.js",
+      "size": 11630,
       "chunks": [
         1
       ],
@@ -92,22 +52,8 @@
       "emitted": true
     },
     {
-      "name": "client.87cd6166d8c18fd761eb.js.map",
-      "size": 35368,
-      "chunks": [
-        1
-      ],
-      "chunkNames": [
-        "client"
-      ],
-      "info": {
-        "development": true
-      },
-      "emitted": true
-    },
-    {
-      "name": "react.e8a37f09fa011b8f4efd.js",
-      "size": 1603,
+      "name": "react.89ca4a3a92124b0ae370.js",
+      "size": 1556,
       "chunks": [
         2
       ],
@@ -116,20 +62,6 @@
       ],
       "info": {
         "immutable": true
-      },
-      "emitted": true
-    },
-    {
-      "name": "react.e8a37f09fa011b8f4efd.js.map",
-      "size": 8371,
-      "chunks": [
-        2
-      ],
-      "chunkNames": [
-        "react"
-      ],
-      "info": {
-        "development": true
       },
       "emitted": true
     }
@@ -144,11 +76,8 @@
       ],
       "assets": [
         "chunk.9dcd693f7e996fc572ac.js",
-        "chunk.9dcd693f7e996fc572ac.js.map",
         "chunk.26eb697cdfb9681cf3dc.js",
-        "chunk.26eb697cdfb9681cf3dc.js.map",
-        "client.87cd6166d8c18fd761eb.js",
-        "client.87cd6166d8c18fd761eb.js.map"
+        "client.da09913fdc59b80693e3.js"
       ],
       "children": {},
       "childAssets": {}
@@ -160,9 +89,7 @@
       ],
       "assets": [
         "chunk.9dcd693f7e996fc572ac.js",
-        "chunk.9dcd693f7e996fc572ac.js.map",
-        "react.e8a37f09fa011b8f4efd.js",
-        "react.e8a37f09fa011b8f4efd.js.map"
+        "react.89ca4a3a92124b0ae370.js"
       ],
       "children": {},
       "childAssets": {}
@@ -180,8 +107,7 @@
         "vendors~client~react"
       ],
       "files": [
-        "chunk.9dcd693f7e996fc572ac.js",
-        "chunk.9dcd693f7e996fc572ac.js.map"
+        "chunk.9dcd693f7e996fc572ac.js"
       ],
       "hash": "9dcd693f7e996fc572ac",
       "siblings": [
@@ -198,15 +124,14 @@
       "rendered": true,
       "initial": true,
       "entry": true,
-      "size": 91915,
+      "size": 92165,
       "names": [
         "client"
       ],
       "files": [
-        "client.87cd6166d8c18fd761eb.js",
-        "client.87cd6166d8c18fd761eb.js.map"
+        "client.da09913fdc59b80693e3.js"
       ],
-      "hash": "87cd6166d8c18fd761eb",
+      "hash": "da09913fdc59b80693e3",
       "siblings": [
         0,
         3
@@ -225,10 +150,9 @@
         "react"
       ],
       "files": [
-        "react.e8a37f09fa011b8f4efd.js",
-        "react.e8a37f09fa011b8f4efd.js.map"
+        "react.89ca4a3a92124b0ae370.js"
       ],
-      "hash": "e8a37f09fa011b8f4efd",
+      "hash": "89ca4a3a92124b0ae370",
       "siblings": [
         0
       ],
@@ -247,8 +171,7 @@
         "vendors~client"
       ],
       "files": [
-        "chunk.26eb697cdfb9681cf3dc.js",
-        "chunk.26eb697cdfb9681cf3dc.js.map"
+        "chunk.26eb697cdfb9681cf3dc.js"
       ],
       "hash": "26eb697cdfb9681cf3dc",
       "siblings": [

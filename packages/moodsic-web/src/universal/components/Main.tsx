@@ -139,11 +139,12 @@ function createHandleClickSubmit(
                 console.log('createHandleclickSubmit(): processing file: %o', file);
 
                 if (fileMap[file.filename] !== undefined) {
-                  const label: any = document.getElementById(`classification-${fileMap[file.filename]}`);
+                  const idx = fileMap[file.filename];
+                  const label: any = document.getElementById(`classification-${idx}`);
                   if (label !== null) {
                     const { classification, displayName } = file.result[0];
                     const normalizedScore = (+classification.score * 100) / 100;
-                    form.labels.push(displayName);
+                    form.labels[idx] = displayName;
                     const newLabel = `<b>${displayName}</b> (${normalizedScore.toFixed(5)}%)`;
                     label.innerHTML = newLabel;
                   }

@@ -60,11 +60,11 @@ const About = ({
         <div>
           <img
             alt="logo-moodsic"
-            src="/assets/logo-moodsic.png"
+            src="/moodsic/assets/logo-moodsic.png"
           />
           <img
             alt="logo-moodsic"
-            src="/assets/logo-sound-therapy.png"
+            src="/moodsic/assets/logo-sound-therapy.png"
           />
         </div>
         <div>

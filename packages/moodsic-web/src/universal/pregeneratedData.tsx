@@ -5,8 +5,8 @@ const pregeneratedData = [
       displayName: "happy",
     },
     fileName: 'Black Eyed Peas - I Gotta Feeling',
-    fileUrl: '/assets/67.wav',
-    imgSrc: '/assets/67.wav.png',
+    fileUrl: '/moodsic/assets/67.wav',
+    imgSrc: '/moodsic/assets/67.wav.png',
   },
   {
     classify: {
@@ -14,8 +14,8 @@ const pregeneratedData = [
       displayName: "calm",
     },
     fileName: 'Vivaldi: The Four Seasons - Concerto No. 1, Spring',
-    fileUrl: '/assets/96.wav',
-    imgSrc: '/assets/96.wav.png',
+    fileUrl: '/moodsic/assets/96.wav',
+    imgSrc: '/moodsic/assets/96.wav.png',
   },
   {
     classify: {
@@ -23,8 +23,8 @@ const pregeneratedData = [
       displayName: "sad",
     },
     fileName: 'Beatles: Yesterday',
-    fileUrl: '/assets/1.wav',
-    imgSrc: '/assets/1.wav.png',
+    fileUrl: '/moodsic/assets/1.wav',
+    imgSrc: '/moodsic/assets/1.wav.png',
   },
 ];
 

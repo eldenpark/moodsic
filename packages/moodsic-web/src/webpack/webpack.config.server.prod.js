@@ -19,7 +19,7 @@ const config = {
     filename: 'makeHtml.bundle.js',
     libraryTarget: 'commonjs2',
     path: paths.build,
-    publicPath: '/',
+    publicPath: '/moodsic/',
   },
   plugins: [
   ],
