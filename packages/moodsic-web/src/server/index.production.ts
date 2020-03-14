@@ -13,13 +13,13 @@ import { withWebpack } from 'express-isomorphic-extension/webpack';
 import IsomorphicState from './IsomorphicState';
 import webpackConfig from '../webpack/webpack.config.client.prod.web';
 
-const webpackBuild = require('../../dist/build.json');
+const webpackBuild = require('../../../../docs/build.json');
 
 const log = logger('[moodsic-web]');
 
 const paths = {
   build:path.resolve(__dirname, '../../build'),
-  dist: path.resolve(__dirname, '../../dist'),
+  dist: path.resolve(__dirname, '../../../../docs'),
 };
 
 const extend: Extend<IsomorphicState> = async (app, serverState) => {

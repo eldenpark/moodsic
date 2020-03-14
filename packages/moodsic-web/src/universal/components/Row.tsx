@@ -12,8 +12,8 @@ const StyledInput = styled.div({
   borderRadius: 7,
   display: 'flex',
   flexDirection: 'column',
-  fontSize: 12,
-  width: 230,
+  fontSize: 13,
+  width: 200,
   '& input': {
     borderBottom: '1px solid #bfbfbf',
     cursor: 'pointer',
@@ -57,24 +57,25 @@ const Input = ({
 const Spectrogram = styled.div({
   display: 'inline-block',
   marginLeft: 20,
+  width: 280,
   '& div:first-child': {
     backgroundColor: '#2b2b2b',
   },
   '& canvas': {
-    width: 350,
+    width: 280,
     height: 85,
   },
   '& img': {
     height: 50,
     marginTop: 6,
-    width: 350,
+    width: '100%',
   },
 });
 
 const Image = ({
   imgSrc,
 }) => {
-  return (
+  return !!isProd && (
     <img
       alt="Spectrogram image pre-generated"
       src={imgSrc}
@@ -90,7 +91,7 @@ const StyledClassification = styled.div({
   },
   '& p:first-child': {
     borderBottom: '1px solid #bfbfbf',
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: 600,
     padding: '2 0 2',
     marginBottom: 4,
@@ -123,7 +124,6 @@ const Row = ({
   pregeneratedData = {},
 }) => {
   const {
-    classification,
     fileName,
     fileUrl,
     imgSrc,

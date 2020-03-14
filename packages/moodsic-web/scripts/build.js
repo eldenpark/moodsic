@@ -14,7 +14,7 @@ const buildLog = buildLogger('[moodsic-web]');
 
 const paths = {
   build: path.resolve(__dirname, '../build'),
-  dist: path.resolve(__dirname, '../dist'),
+  dist: path.resolve(__dirname, '../../../docs'),
   lib: path.resolve(__dirname, '../lib'),
   src: path.resolve(__dirname, '../src'),
 };
@@ -27,7 +27,9 @@ gulp.task('clean', () => {
   ];
   buildLog('clean', 'targetPaths: %s', targetPaths);
 
-  return del(targetPaths);
+  return del(targetPaths, {
+    force: true,
+  });
 });
 
 gulp.task('webpack-client', () => {

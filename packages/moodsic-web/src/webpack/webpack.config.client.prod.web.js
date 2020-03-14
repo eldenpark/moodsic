@@ -21,7 +21,7 @@ const config = {
     chunkFilename: 'chunk.[chunkhash].js',
     filename: '[name].[chunkhash].js',
     path: paths.dist,
-    publicPath: '/public/',
+    publicPath: '/',
   },
 };
 

@@ -7,12 +7,13 @@ import {
 
 const StyledControl = styled.div({
   display: 'flex',
-  '& > *': {
-    marginRight: 19,
-  },
+  marginTop: 30,
 });
 
-const Button = styled.button<any>(({ bgColor }) => ({
+const Button = styled.button<any>(({
+  bgColor,
+  disabled,
+}) => ({
   alignItems: 'center',
   backgroundColor: bgColor,
   borderRadius: 8,
@@ -21,10 +22,12 @@ const Button = styled.button<any>(({ bgColor }) => ({
   fontSize: 15,
   height: 36,
   justifyContent: 'center',
+  opacity: disabled ? 0.7 : 1,
+  outline: 0,
   width: 100,
   '&:hover': {
     fontWeight: 800,
-    transform: 'translate(1px,1px)',
+    transform: disabled ? 'none' : 'translate(1px,1px)',
   },
 }));
 
@@ -35,10 +38,18 @@ const Submit = styled(Button)({
 });
 
 const Left = styled.div({
-  width: 230,
+  width: 220,
+});
+
+const Right = styled.div({
+  display: 'flex',
+  '& > *': {
+    marginRight: 19,
+  },
 });
 
 const Control: React.FC<any> = ({
+  classificationIsReady,
   handleClickSubmit,
   startStopState,
 }) => {
@@ -66,36 +77,35 @@ const Control: React.FC<any> = ({
           onClick={handleClickSubmit}
           type="button"
         >
-          {startStopState.current}
+          {startStopState.current === 'Start' ? 'Start' : 'Start Over'}
         </Submit>
       </Left>
-      <div>
+      <Right>
         <Button
           bgColor="#f1819b"
+          disabled={!classificationIsReady}
           onClick={(e) => handleClickButton(e, 'happy')}
           type="button"
         >
           Happy
         </Button>
-      </div>
-      <div>
         <Button
           bgColor="#f7eead"
+          disabled={!classificationIsReady}
           onClick={(e) => handleClickButton(e, 'calm')}
           type="button"
         >
           Calm
         </Button>
-      </div>
-      <div>
         <Button
           bgColor="#28a8d8"
+          disabled={!classificationIsReady}
           onClick={(e) => handleClickButton(e, 'sad')}
           type="button"
         >
-            Sad
+          Sad
         </Button>
-      </div>
+      </Right>
     </StyledControl>
   );
 };

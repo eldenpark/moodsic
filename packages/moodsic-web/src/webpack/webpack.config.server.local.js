@@ -23,7 +23,7 @@ const config = {
     filename: 'makeHtml.bundle.js',
     libraryTarget: 'commonjs2',
     path: path.resolve(paths.build),
-    publicPath: '/public/',
+    publicPath: '/',
   },
   plugins: [
   ],

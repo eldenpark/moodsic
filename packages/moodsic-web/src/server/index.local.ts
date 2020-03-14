@@ -22,9 +22,8 @@ import webpackConfigServer from '../webpack/webpack.config.server.local';
 const log = logger('[moodsic-web]');
 
 const paths = {
-  assets: path.resolve(__dirname, '../../dist/assets'),
   build: path.resolve(__dirname, '../../build'),
-  dist: path.resolve(__dirname, '../../dist'),
+  dist: path.resolve(__dirname, '../../../../docs'),
   src: path.resolve(__dirname, '..'),
 };
 
@@ -34,7 +33,7 @@ const extend: Extend<IsomorphicState> = async (app, serverState) => {
     next();
   });
 
-  app.use('/public/', express.static(paths.dist));
+  app.use('/', express.static(paths.dist));
 
   app.use(launchStatusChecker(serverState));
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import styled from '@emotion/styled';
 
+import About from '@@src/universal/components/About';
 import Control from '@@src/universal/components/Control';
 import {
   FileMap,
@@ -10,7 +11,8 @@ import {
 import pregeneratedData from '@@src/universal/pregeneratedData';
 import Row from '@@src/universal/components/Row';
 
-const Form = styled.form({
+const StyledMain = styled.div({
+  width: 650,
 });
 
 const Main = () => {
@@ -27,15 +29,17 @@ const Main = () => {
     startStopState.current = nextState;
     updateState({});
   }, []);
+  const [classificationIsReady, setClassificationIsReady] = React.useState(false);
 
   const handleClickSubmit = React.useCallback(createHandleClickSubmit(
-    startStopState,
+    setClassificationIsReady,
     setStartStopState,
+    startStopState,
   ), [startStopState]);
 
   return (
-    <div>
-      <Form id="form">
+    <StyledMain>
+      <form id="form">
         <Row
           itemId="0"
           pregeneratedData={pregeneratedData[0]}
@@ -49,20 +53,22 @@ const Main = () => {
           pregeneratedData={pregeneratedData[2]}
         />
         <Control
+          classificationIsReady={classificationIsReady}
           handleClickSubmit={handleClickSubmit}
           startStopState={startStopState}
-        >
-        </Control>
-      </Form>
-    </div>
+        />
+      </form>
+      <About />
+    </StyledMain>
   );
 };
 
 export default Main;
 
 function createHandleClickSubmit(
-  startStopState: { current: string },
+  setClassificationIsReady,
   setStartStopState,
+  startStopState: { current: string },
 ) {
   const isProd = process.env.NODE_ENV === 'production';
 
@@ -99,14 +105,15 @@ function createHandleClickSubmit(
               .then((response) => {
                 const { data } = response;
                 const _pregeneratedData = pregeneratedData[i];
+                setClassificationIsReady(true);
 
-                console.log('createHandleclickSubmit(): NODE_ENV: production, including data: %o', data);
+                console.log('createHandleclickSubmit(): NODE_ENV: production, i: %s, including data: %o, pregeneratedData: %o', i, data, _pregeneratedData);
 
                 const label: any = document.getElementById(`classification-${i}`);
                 if (label !== null) {
                   const { classification, displayName } = _pregeneratedData.classify;
                   const normalizedScore = (+classification.score * 100) / 100;
-                  form.labels.push(displayName);
+                  form.labels[i] = (displayName);
                   const newLabel = `<b>${displayName}</b> (${normalizedScore.toFixed(5)}%)`;
                   label.innerHTML = newLabel;
                 }
@@ -125,6 +132,7 @@ function createHandleClickSubmit(
         })
           .then(({ data }) => {
             console.log('createHandleclickSubmit(): classification API success, response: %o', data);
+            setClassificationIsReady(true);
 
             if (data.payload && data.payload.length > 0) {
               data.payload.forEach((file) => {
@@ -149,6 +157,7 @@ function createHandleClickSubmit(
       }
     } else {
       setStartStopState('Start');
+      setClassificationIsReady(false);
 
       for (let i = 0; i < files.length; i += 1) {
         const file = files[i].files[0];
@@ -157,6 +166,12 @@ function createHandleClickSubmit(
         if (form.sources[i] !== undefined) {
           console.log('createHandleclickSubmit(): stop source, i:%s', i);
           form.sources[i].stop();
+        }
+
+        const label: any = document.getElementById(`classification-${i}`);
+        if (label !== null) {
+          label.innerHTML = "No Data";
+          label.classList.remove('focus');
         }
 
         setTimeout(() => {
@@ -221,7 +236,7 @@ function drawSpectrogram(
   }
 
   source = audioContext.createBufferSource();
-  form.sources.push(source);
+  form.sources[idx] = source;
 
   const reader = new FileReader();
   reader.onload = function (ev: any) {

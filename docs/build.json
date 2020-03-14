@@ -1,0 +1,263 @@
+{
+  "errors": [],
+  "warnings": [],
+  "builtAt": 1584171848976,
+  "assetsByChunkName": {
+    "vendors~client~react": [
+      "chunk.9dcd693f7e996fc572ac.js",
+      "chunk.9dcd693f7e996fc572ac.js.map"
+    ],
+    "client": [
+      "client.87cd6166d8c18fd761eb.js",
+      "client.87cd6166d8c18fd761eb.js.map"
+    ],
+    "react": [
+      "react.e8a37f09fa011b8f4efd.js",
+      "react.e8a37f09fa011b8f4efd.js.map"
+    ],
+    "vendors~client": [
+      "chunk.26eb697cdfb9681cf3dc.js",
+      "chunk.26eb697cdfb9681cf3dc.js.map"
+    ]
+  },
+  "assets": [
+    {
+      "name": "chunk.26eb697cdfb9681cf3dc.js",
+      "size": 63666,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [
+        "vendors~client"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "chunk.26eb697cdfb9681cf3dc.js.map",
+      "size": 328790,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [
+        "vendors~client"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "chunk.9dcd693f7e996fc572ac.js",
+      "size": 129898,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "vendors~client~react"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "chunk.9dcd693f7e996fc572ac.js.map",
+      "size": 313591,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "vendors~client~react"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "client.87cd6166d8c18fd761eb.js",
+      "size": 11614,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "client"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "client.87cd6166d8c18fd761eb.js.map",
+      "size": 35368,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "client"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "react.e8a37f09fa011b8f4efd.js",
+      "size": 1603,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "react"
+      ],
+      "info": {
+        "immutable": true
+      },
+      "emitted": true
+    },
+    {
+      "name": "react.e8a37f09fa011b8f4efd.js.map",
+      "size": 8371,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "react"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "client": {
+      "chunks": [
+        0,
+        3,
+        1
+      ],
+      "assets": [
+        "chunk.9dcd693f7e996fc572ac.js",
+        "chunk.9dcd693f7e996fc572ac.js.map",
+        "chunk.26eb697cdfb9681cf3dc.js",
+        "chunk.26eb697cdfb9681cf3dc.js.map",
+        "client.87cd6166d8c18fd761eb.js",
+        "client.87cd6166d8c18fd761eb.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "react": {
+      "chunks": [
+        0,
+        2
+      ],
+      "assets": [
+        "chunk.9dcd693f7e996fc572ac.js",
+        "chunk.9dcd693f7e996fc572ac.js.map",
+        "react.e8a37f09fa011b8f4efd.js",
+        "react.e8a37f09fa011b8f4efd.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "reason": "split chunk (cache group: vendors) (name: vendors~client~react)",
+      "size": 134679,
+      "names": [
+        "vendors~client~react"
+      ],
+      "files": [
+        "chunk.9dcd693f7e996fc572ac.js",
+        "chunk.9dcd693f7e996fc572ac.js.map"
+      ],
+      "hash": "9dcd693f7e996fc572ac",
+      "siblings": [
+        1,
+        2,
+        3
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {}
+    },
+    {
+      "id": 1,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 91915,
+      "names": [
+        "client"
+      ],
+      "files": [
+        "client.87cd6166d8c18fd761eb.js",
+        "client.87cd6166d8c18fd761eb.js.map"
+      ],
+      "hash": "87cd6166d8c18fd761eb",
+      "siblings": [
+        0,
+        3
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {}
+    },
+    {
+      "id": 2,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 40,
+      "names": [
+        "react"
+      ],
+      "files": [
+        "react.e8a37f09fa011b8f4efd.js",
+        "react.e8a37f09fa011b8f4efd.js.map"
+      ],
+      "hash": "e8a37f09fa011b8f4efd",
+      "siblings": [
+        0
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {}
+    },
+    {
+      "id": 3,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "reason": "split chunk (cache group: vendors) (name: vendors~client)",
+      "size": 229501,
+      "names": [
+        "vendors~client"
+      ],
+      "files": [
+        "chunk.26eb697cdfb9681cf3dc.js",
+        "chunk.26eb697cdfb9681cf3dc.js.map"
+      ],
+      "hash": "26eb697cdfb9681cf3dc",
+      "siblings": [
+        0,
+        1
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {}
+    }
+  ]
+}
