@@ -2,7 +2,7 @@
 Mood classification using spectrograms of sound
 
 ## Inspiration
-Music streaming platforms such as Spotify and Apple Music recommend a list of songs that are generally known to be associated with a certain mood. We aim to programmatically sort out the songs based on the mood without a person individually tagging all the songs.
+Music streaming platforms such as Spotify and Apple Music recommend a list of songs that are generally known to be associated with a certain mood. We explore the possibilities of programmatically sorting out the songs based on the mood without a person individually tagging all the songs.
 
 ## Spectrogram
 A **spectrogram** is a visual representation of the spectrum of frequencies of a signal as it varies with time. We used these images of sound to train our convolutional neural network based model.
@@ -35,11 +35,10 @@ Most likely `moodsic-web-backend` won't work on your machine right off you insta
 ## Implications
 
 ### Machine Learning on Sound
-Sound may be processed by neural networks either as a sequence of frequency data, where a value at a certain timeframe may be relevant to the ones before, or as a set of quanitites (pixels) in a coordinate system (spectrogram). In the case of songs, we know the exact length of data and it is fairly short to convert them to images. Treating sound as imagery does seem to yield some interesting observations. Similiar approaches have been proposed in the academia for a while, and the practice may permeate to the industry in the near future.
+Sound may be processed by neural networks in different ways. These include treating it as a sequence of frequency data, where a value at a certain timeframe may be relevant to the ones before, or as a set of quanitites (pixels) in a coordinate system (spectrogram). In the case of songs, we know the exact length of data unlike the real-time audio recording. Treating sound as imagery did seem to yield some interesting observations on our experiment. Similar approaches have been proposed for a while.
 
 ### Cloud-based
-By this time around, a lot of people are aware of the use and power of artificial neural network. The deep learning based machine intelligence seems to be facing another turnaround since it is now made ever more accessible as on the cloud platform. Various attempts at exploiting artificial intelligence are expected.
-
+By this time around, a lot of people are aware of the use and power of artificial neural network. That neural network is now more accessible through cloud AI platform. Various noble attempts in exploiting cloud AI are expected in the near future.
 
 ## HackSC 2020
 This is a product worked during [HackSC 2020](https://hacksc.com/), by a team of the following.
